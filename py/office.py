@@ -40,12 +40,12 @@ def read_doc(pathname):
         office_finish_href_set = set(office_finish_href_list)
 
     # 待爬取列表
-    office_href_list = []
+    hospital_href_list = []
     for j in hospital_all_href_list:
         if j not in office_finish_href_set:
-            office_href_list.append(j)
+            hospital_href_list.append(j)
 
-    return office_href_list
+    return hospital_href_list
 
 
 def get_office(pathname, href):
@@ -186,25 +186,25 @@ if __name__ == '__main__':
     write_table(my_pathname)
 
     # 获取待爬取列表
-    my_office_href_list = read_doc(my_pathname)
+    my_hospital_href_list = read_doc(my_pathname)
 
     # 将医院分成5等份
-    my_office_href_list_1 = my_office_href_list[
-                              int(len(my_office_href_list) / 5) * 0: int(len(my_office_href_list) / 5) * 1]
-    my_office_href_list_2 = my_office_href_list[
-                              int(len(my_office_href_list) / 5) * 1: int(len(my_office_href_list) / 5) * 2]
-    my_office_href_list_3 = my_office_href_list[
-                              int(len(my_office_href_list) / 5) * 2: int(len(my_office_href_list) / 5) * 3]
-    my_office_href_list_4 = my_office_href_list[
-                              int(len(my_office_href_list) / 5) * 3: int(len(my_office_href_list) / 5) * 4]
-    my_office_href_list_5 = my_office_href_list[int(len(my_office_href_list) / 5) * 4: len(my_office_href_list)]
+    my_hospital_href_list_1 = my_hospital_href_list[
+                              int(len(my_hospital_href_list) / 5) * 0: int(len(my_hospital_href_list) / 5) * 1]
+    my_hospital_href_list_2 = my_hospital_href_list[
+                              int(len(my_hospital_href_list) / 5) * 1: int(len(my_hospital_href_list) / 5) * 2]
+    my_hospital_href_list_3 = my_hospital_href_list[
+                              int(len(my_hospital_href_list) / 5) * 2: int(len(my_hospital_href_list) / 5) * 3]
+    my_hospital_href_list_4 = my_hospital_href_list[
+                              int(len(my_hospital_href_list) / 5) * 3: int(len(my_hospital_href_list) / 5) * 4]
+    my_hospital_href_list_5 = my_hospital_href_list[int(len(my_hospital_href_list) / 5) * 4: len(my_hospital_href_list)]
 
     # 执行多线程
-    t1 = MyThread(pathname=my_pathname, office_href_list=my_office_href_list_1)
-    t2 = MyThread(pathname=my_pathname, office_href_list=my_office_href_list_2)
-    t3 = MyThread(pathname=my_pathname, office_href_list=my_office_href_list_3)
-    t4 = MyThread(pathname=my_pathname, office_href_list=my_office_href_list_4)
-    t5 = MyThread(pathname=my_pathname, office_href_list=my_office_href_list_5)
+    t1 = MyThread(pathname=my_pathname, office_href_list=my_hospital_href_list_1)
+    t2 = MyThread(pathname=my_pathname, office_href_list=my_hospital_href_list_2)
+    t3 = MyThread(pathname=my_pathname, office_href_list=my_hospital_href_list_3)
+    t4 = MyThread(pathname=my_pathname, office_href_list=my_hospital_href_list_4)
+    t5 = MyThread(pathname=my_pathname, office_href_list=my_hospital_href_list_5)
 
     t1.start()
     t2.start()

@@ -33,7 +33,7 @@ def read_doc(pathname):
     # 已完成列表
     try:
         office_finish_href_list = []
-        office_finish_reader_list = csv.reader(open(pathname + 'office_finish.csv', 'r'))
+        office_finish_reader_list = csv.reader(open(pathname + 'doctor_finish.csv', 'r'))
         for j in office_finish_reader_list:
             office_finish_href_list.append(j[0])
         office_finish_href_set = set(office_finish_href_list)
@@ -129,12 +129,12 @@ def write_finish(pathname, office_href):
         doctor_finish_writer.writerow([office_href])
 
 
-def write_error(pathname, doctor_href):
+def write_error(pathname, office_href):
     with open(pathname + 'doctor_error.csv', 'a') as doctor_error:
         doctor_error_writer = csv.writer(doctor_error)
 
         # 写入行数据
-        doctor_error_writer.writerow([doctor_href])
+        doctor_error_writer.writerow([office_href])
 
 
 class MyThread(threading.Thread):

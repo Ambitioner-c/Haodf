@@ -1,6 +1,6 @@
 """
 author: cfl
-    获取医生列表。
+    获取医生列表
 """
 import requests
 from bs4 import BeautifulSoup

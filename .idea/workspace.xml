@@ -1,25 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ac4c1106-e652-4ae3-b2ea-85bf769bee1d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/Haodf.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/py/hospital.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/py/hospital_detail.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/py/hospital_detail_text.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/py/office.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/bin/activate" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/bin/activate.csh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/bin/activate.fish" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/bin/python" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/bin/python3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/bin/python3.6" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib64" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/pyvenv.cfg" afterDir="false" />
+    <list default="true" id="ac4c1106-e652-4ae3-b2ea-85bf769bee1d" name="Default Changelist" comment="获取医院信息(测试)">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,10 +16,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/py/office.py">
+        <entry file="file://$PROJECT_DIR$/py/doctor.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="23" column="9" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
+            <state relative-caret-position="139">
+              <caret line="212" column="13" selection-start-line="212" selection-start-column="13" selection-end-line="212" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -57,6 +40,8 @@
       <find>hospital-label-item</find>
       <find>serve</find>
       <find>now</find>
+      <find>intro_doc-nav-mod</find>
+      <find>.csv</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -80,6 +65,7 @@
         <option value="$PROJECT_DIR$/py/hospital.py" />
         <option value="$PROJECT_DIR$/py/hospital_detail_text.py" />
         <option value="$PROJECT_DIR$/py/office.py" />
+        <option value="$PROJECT_DIR$/py/doctor.py" />
       </list>
     </option>
   </component>
@@ -128,6 +114,11 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/py" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -140,7 +131,29 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.office">
+  <component name="RunManager" selected="Python.doctor">
+    <configuration name="doctor" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Haodf" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/py" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/py/doctor.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="hospital_detail" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Haodf" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -231,6 +244,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.doctor" />
         <item itemvalue="Python.office" />
         <item itemvalue="Python.hospital_detail" />
         <item itemvalue="Python.hospital_detail_text" />
@@ -249,7 +263,7 @@
       <option name="presentableId" value="Default" />
       <updated>1575447922620</updated>
       <workItem from="1575447925095" duration="23440000" />
-      <workItem from="1575511123242" duration="16004000" />
+      <workItem from="1575511123242" duration="24542000" />
     </task>
     <task id="LOCAL-00001" summary="获取科室列表">
       <created>1575535105816</created>
@@ -314,11 +328,67 @@
       <option name="project" value="LOCAL" />
       <updated>1575543194793</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="获取医院列表、医院信息、科室列表">
+      <created>1575543580269</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1575543580269</updated>
+    </task>
+    <task id="LOCAL-00011" summary="获取医院列表">
+      <created>1575543700512</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1575543700512</updated>
+    </task>
+    <task id="LOCAL-00012" summary="获取医院信息">
+      <created>1575543742133</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1575543742133</updated>
+    </task>
+    <task id="LOCAL-00013" summary="获取医院信息(测试)">
+      <created>1575543850729</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1575543850729</updated>
+    </task>
+    <task id="LOCAL-00014" summary="获取科室列表">
+      <created>1575543910055</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1575543910055</updated>
+    </task>
+    <task id="LOCAL-00015" summary="获取科室列表">
+      <created>1575547234968</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1575547234968</updated>
+    </task>
+    <task id="LOCAL-00016" summary="获取医生列表">
+      <created>1575548850976</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1575548850976</updated>
+    </task>
+    <task id="LOCAL-00017" summary="获取医生列表">
+      <created>1575600062160</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1575600062160</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39444000" />
+    <option name="totallyTimeSpent" value="47982000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -332,13 +402,13 @@
   <component name="ToolWindowManager">
     <frame x="1366" y="0" width="1920" height="1050" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49836066" visible="true" weight="0.13879958" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49836066" visible="true" weight="0.13879958" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.50163937" side_tool="true" weight="0.13879958" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4994641" weight="0.32522124" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39956093" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4994641" visible="true" weight="0.32522124" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.37278762" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32964602" />
@@ -346,7 +416,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.4994641" weight="0.31969026" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5005359" side_tool="true" weight="0.32853982" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.4994641" visible="true" weight="0.32853982" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4994641" weight="0.32853982" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32964602" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -385,17 +455,19 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="获取医院列表、医院信息、科室列表" />
+    <MESSAGE value="获取医院列表" />
     <MESSAGE value="获取医院信息" />
     <MESSAGE value="获取医院信息(测试)" />
-    <MESSAGE value="获取医院列表" />
     <MESSAGE value="获取科室列表" />
-    <MESSAGE value="获取医院列表、医院信息、科室列表" />
-    <option name="LAST_COMMIT_MESSAGE" value="获取医院列表、医院信息、科室列表" />
+    <MESSAGE value="获取医生列表" />
+    <option name="LAST_COMMIT_MESSAGE" value="获取医生列表" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Haodf$hospital_detail_text.coverage" NAME="hospital_detail_text Coverage Results" MODIFIED="1575528101036" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/py" />
-    <SUITE FILE_PATH="coverage/Haodf$office.coverage" NAME="office Coverage Results" MODIFIED="1575541595438" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/py" />
+    <SUITE FILE_PATH="coverage/Haodf$office.coverage" NAME="office Coverage Results" MODIFIED="1575544574313" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/py" />
     <SUITE FILE_PATH="coverage/Haodf$hospital_detail.coverage" NAME="hospital_detail Coverage Results" MODIFIED="1575528419420" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/py" />
+    <SUITE FILE_PATH="coverage/Haodf$doctor.coverage" NAME="doctor Coverage Results" MODIFIED="1575599959072" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/py" />
     <SUITE FILE_PATH="coverage/Haodf$yiyuan.coverage" NAME="yiyuan Coverage Results" MODIFIED="1575462314402" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/py" />
   </component>
   <component name="editorHistoryManager">
@@ -418,13 +490,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="380">
           <caret line="1806" selection-start-line="1806" selection-end-line="1806" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" column="5" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -454,8 +519,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/py/office.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="23" column="9" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
+        <state relative-caret-position="77">
+          <caret line="141" column="39" lean-forward="true" selection-start-line="141" selection-start-column="39" selection-end-line="141" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="5" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/py/doctor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="212" column="13" selection-start-line="212" selection-start-column="13" selection-end-line="212" selection-end-column="13" />
         </state>
       </provider>
     </entry>

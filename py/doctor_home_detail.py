@@ -1,6 +1,7 @@
 """
 author: cfl
-    获取医生主页信息，失败。
+    获取医生主页信息，失败，
+    想通过获取头部来请求，但是失败了。
 """
 import requests
 from bs4 import BeautifulSoup

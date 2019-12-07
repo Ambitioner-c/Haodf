@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ac4c1106-e652-4ae3-b2ea-85bf769bee1d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="ac4c1106-e652-4ae3-b2ea-85bf769bee1d" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,8 +30,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/py/doctor_home_detail_webdriver.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="44">
-              <caret line="2" column="15" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="15" />
+            <state relative-caret-position="425">
+              <caret line="420" column="14" lean-forward="true" selection-start-line="420" selection-start-column="14" selection-end-line="420" selection-end-column="14" />
               <folding>
                 <element signature="e#61#90#0" expanded="true" />
                 <element signature="e#290#1029#0" />
@@ -88,7 +86,6 @@
       <list>
         <option value="$PROJECT_DIR$/py/yiyun.py" />
         <option value="$PROJECT_DIR$/py/yiyuan.py" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/py/hospital_detail.py" />
         <option value="$PROJECT_DIR$/py/hospital.py" />
         <option value="$PROJECT_DIR$/py/hospital_detail_text.py" />
@@ -99,6 +96,7 @@
         <option value="$PROJECT_DIR$/py/doctor_home_detail2.py" />
         <option value="$PROJECT_DIR$/py/doctor_home_detail.py" />
         <option value="$PROJECT_DIR$/py/doctor_home_detail_webdriver.py" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -301,7 +299,7 @@
       <workItem from="1575633501390" duration="677000" />
       <workItem from="1575640776026" duration="6540000" />
       <workItem from="1575711644341" duration="131000" />
-      <workItem from="1575711802262" duration="12342000" />
+      <workItem from="1575711802262" duration="12504000" />
     </task>
     <task id="LOCAL-00001" summary="获取科室列表">
       <created>1575535105816</created>
@@ -478,11 +476,18 @@
       <option name="project" value="LOCAL" />
       <updated>1575724095363</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="获取医生主页信息成功（使用chrome的webdriver）">
+      <created>1575724287572</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1575724287572</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="90451000" />
+    <option name="totallyTimeSpent" value="90613000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -502,7 +507,7 @@
       <window_info id="Favorites" order="2" sideWeight="0.50163937" side_tool="true" weight="0.13879958" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.7518757" visible="true" weight="0.16924779" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.7518757" weight="0.16924779" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.37278762" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -617,13 +622,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" column="5" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/py/doctor.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="440">
@@ -704,10 +702,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" column="5" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/py/doctor_home_detail_webdriver.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" column="15" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="15" />
+        <state relative-caret-position="425">
+          <caret line="420" column="14" lean-forward="true" selection-start-line="420" selection-start-column="14" selection-end-line="420" selection-end-column="14" />
           <folding>
             <element signature="e#61#90#0" expanded="true" />
             <element signature="e#290#1029#0" />

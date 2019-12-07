@@ -410,7 +410,7 @@ if __name__ == '__main__':
     # 将医生分成5等份
     my_doctor_home_list1 = my_doctor_home_list[int(len(my_doctor_home_list)/3)*0:int(len(my_doctor_home_list)/3)*1]
     my_doctor_home_list2 = my_doctor_home_list[int(len(my_doctor_home_list)/3)*1:int(len(my_doctor_home_list)/3)*2]
-    my_doctor_home_list3 = my_doctor_home_list[int(len(my_doctor_home_list)/3)*4:len(my_doctor_home_list)]
+    my_doctor_home_list3 = my_doctor_home_list[int(len(my_doctor_home_list)/3)*2:len(my_doctor_home_list)]
 
     # 执行多线程
     t1 = MyThread(pathname=my_pathname, doctor_href_list=my_doctor_href_list1, doctor_home_list=my_doctor_home_list1)

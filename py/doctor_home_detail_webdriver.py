@@ -403,34 +403,24 @@ if __name__ == '__main__':
     # get_doctor_home(my_driver, my_pathname, 'DE4rO-XCoLUmy11ccTieBvzKOb', 'sunandr')
     # write_finish(my_pathname, 'DE4rO-XCoLUmy11ccTieBvzKOb')
     # 将医生分成5等份
-    my_doctor_href_list1 = my_doctor_href_list[int(len(my_doctor_href_list)/5)*0:int(len(my_doctor_href_list)/5)*1]
-    my_doctor_href_list2 = my_doctor_href_list[int(len(my_doctor_href_list)/5)*1:int(len(my_doctor_href_list)/5)*2]
-    my_doctor_href_list3 = my_doctor_href_list[int(len(my_doctor_href_list)/5)*2:int(len(my_doctor_href_list)/5)*3]
-    my_doctor_href_list4 = my_doctor_href_list[int(len(my_doctor_href_list)/5)*3:int(len(my_doctor_href_list)/5)*4]
-    my_doctor_href_list5 = my_doctor_href_list[int(len(my_doctor_href_list)/5)*4:len(my_doctor_href_list)]
+    my_doctor_href_list1 = my_doctor_href_list[int(len(my_doctor_href_list)/3)*0:int(len(my_doctor_href_list)/3)*1]
+    my_doctor_href_list2 = my_doctor_href_list[int(len(my_doctor_href_list)/3)*1:int(len(my_doctor_href_list)/3)*2]
+    my_doctor_href_list3 = my_doctor_href_list[int(len(my_doctor_href_list)/3)*2:len(my_doctor_href_list)]
 
     # 将医生分成5等份
-    my_doctor_home_list1 = my_doctor_home_list[int(len(my_doctor_home_list)/5)*0:int(len(my_doctor_home_list)/5)*1]
-    my_doctor_home_list2 = my_doctor_home_list[int(len(my_doctor_home_list)/5)*1:int(len(my_doctor_home_list)/5)*2]
-    my_doctor_home_list3 = my_doctor_home_list[int(len(my_doctor_home_list)/5)*2:int(len(my_doctor_home_list)/5)*3]
-    my_doctor_home_list4 = my_doctor_home_list[int(len(my_doctor_home_list)/5)*3:int(len(my_doctor_home_list)/5)*4]
-    my_doctor_home_list5 = my_doctor_home_list[int(len(my_doctor_home_list)/5)*4:len(my_doctor_home_list)]
+    my_doctor_home_list1 = my_doctor_home_list[int(len(my_doctor_home_list)/3)*0:int(len(my_doctor_home_list)/3)*1]
+    my_doctor_home_list2 = my_doctor_home_list[int(len(my_doctor_home_list)/3)*1:int(len(my_doctor_home_list)/3)*2]
+    my_doctor_home_list3 = my_doctor_home_list[int(len(my_doctor_home_list)/3)*4:len(my_doctor_home_list)]
 
     # 执行多线程
     t1 = MyThread(pathname=my_pathname, doctor_href_list=my_doctor_href_list1, doctor_home_list=my_doctor_home_list1)
     t2 = MyThread(pathname=my_pathname, doctor_href_list=my_doctor_href_list2, doctor_home_list=my_doctor_home_list2)
     t3 = MyThread(pathname=my_pathname, doctor_href_list=my_doctor_href_list3, doctor_home_list=my_doctor_home_list3)
-    t4 = MyThread(pathname=my_pathname, doctor_href_list=my_doctor_href_list4, doctor_home_list=my_doctor_home_list4)
-    t5 = MyThread(pathname=my_pathname, doctor_href_list=my_doctor_href_list5, doctor_home_list=my_doctor_home_list5)
 
     t1.start()
     t2.start()
     t3.start()
-    t4.start()
-    t5.start()
 
     t1.join()
     t2.join()
     t3.join()
-    t4.join()
-    t5.join()

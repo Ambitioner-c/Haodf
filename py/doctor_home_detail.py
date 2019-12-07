@@ -20,6 +20,8 @@ Cookies = {'Cookie': ''}
 def get_doctor_home(pathname, doctor_href, doctor_home):
     url = 'https://%s.haodf.com/' % doctor_home
 
+    cookie = 'UM_distinctid=16eb655dcbc2b-068f433501878-31760856-1fa400-16eb655dcbef2; _ga=GA1.2.924382091.1575017111; g=HDF.21.5de0e010c88f3; __jsluid_s=cfd0be6ef24c552a1e1575f4ead4f8cf; CNZZDATA-FE=CNZZDATA-FE; _gid=GA1.2.720435388.1575708911; Hm_lvt_dfa5478034171cc641b1639b2a5b717d=1575445054,1575452105,1575615451,1575708911; __jsl_clearance=1575712569.347|0|e0XiXBlNLrRY6Ucjuk4qHMHgmN0%3D; CNZZDATA1256706712=1752327309-1575544577-https%253A%252F%252Fzhuguangying.haodf.com%252F%7C1575711992; Hm_lpvt_dfa5478034171cc641b1639b2a5b717d=1575713118'
+    Cookies['Cookie'] = cookie
     # 获取页面内容
     res = requests.get(url, headers=Headers, cookies=Cookies)
     html = res.text

@@ -1,6 +1,6 @@
 """
 author: cfl
-    获取医生主页信息，失败
+    获取医生主页信息，失败。
 """
 import requests
 from bs4 import BeautifulSoup

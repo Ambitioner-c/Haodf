@@ -10,7 +10,6 @@ import time
 import threading
 import os
 from random import randint
-import execjs
 
 Headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) '
                          'AppleWebKit/537.36 (KHTML, like Gecko) '
@@ -18,17 +17,8 @@ Headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) '
 Cookies = {'Cookie': ''}
 
 
-def set_cookies(doctor_home):
-    url = 'https://%s.haodf.com/' % doctor_home
-
-    cookies = ''
-    Cookies['Cookies'] = cookies
-
-
 def get_doctor_home(pathname, doctor_href, doctor_home):
     url = 'https://%s.haodf.com/' % doctor_home
-
-    set_cookies(doctor_home)
 
     # 获取页面内容
     res = requests.get(url, headers=Headers, cookies=Cookies)
@@ -42,7 +32,7 @@ def get_doctor_home(pathname, doctor_href, doctor_home):
     # 职称
     h3_title = div_up.findAll('h3', attrs={'class': re.compile(r'doc_name')})[0]
     title = re.findall(r'>(.+?)</h3>', str(h3_title))[0]
-    title = title.replace(' ', '|').strip('|').replace('  ', '||')
+    title = title.replace(' ', '|').strip('|').replace('  ', '||')
 
     # 科室
     div_office = div_up.findAll('div', attrs={'class': re.compile(r'doc_hospital')})[0]

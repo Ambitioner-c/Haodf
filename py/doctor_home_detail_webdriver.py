@@ -259,7 +259,7 @@ def read_doc(pathname):
     doctor_href_list = []
     doctor_home_list = []
     for j in range(len(doctor_home_all_list)):
-        if doctor_home_all_list[j] not in doctor_home_finish_set:
+        if doctor_href_all_list[j] not in doctor_home_finish_set:
             doctor_href_list.append(doctor_href_all_list[j])
             doctor_home_list.append(doctor_home_all_list[j])
 
@@ -398,16 +398,19 @@ if __name__ == '__main__':
 
     # 获取待爬取列表
     my_doctor_href_list, my_doctor_home_list = read_doc(my_pathname)
+    my_doctor_href_list = my_doctor_href_list[0: 35000]
+    my_doctor_home_list = my_doctor_home_list[0: 35000]
 
     # get_doctor_home(my_driver, my_pathname, my_doctor_href_list[0], my_doctor_home_list[0])
     # get_doctor_home(my_driver, my_pathname, 'DE4rO-XCoLUmy11ccTieBvzKOb', 'sunandr')
     # write_finish(my_pathname, 'DE4rO-XCoLUmy11ccTieBvzKOb')
-    # 将医生分成5等份
+
+    # 将医生分成3等份
     my_doctor_href_list1 = my_doctor_href_list[int(len(my_doctor_href_list)/3)*0:int(len(my_doctor_href_list)/3)*1]
     my_doctor_href_list2 = my_doctor_href_list[int(len(my_doctor_href_list)/3)*1:int(len(my_doctor_href_list)/3)*2]
     my_doctor_href_list3 = my_doctor_href_list[int(len(my_doctor_href_list)/3)*2:len(my_doctor_href_list)]
 
-    # 将医生分成5等份
+    # 将医生分成3等份
     my_doctor_home_list1 = my_doctor_home_list[int(len(my_doctor_home_list)/3)*0:int(len(my_doctor_home_list)/3)*1]
     my_doctor_home_list2 = my_doctor_home_list[int(len(my_doctor_home_list)/3)*1:int(len(my_doctor_home_list)/3)*2]
     my_doctor_home_list3 = my_doctor_home_list[int(len(my_doctor_home_list)/3)*2:len(my_doctor_home_list)]

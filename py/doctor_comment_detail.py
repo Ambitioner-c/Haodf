@@ -10,6 +10,7 @@ import threading
 import os
 import requests
 from time import sleep
+from random import randint
 
 
 Headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) '
@@ -17,41 +18,47 @@ Headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) '
                          'Chrome/78.0.3904.108 Safari/537.36'}
 
 
-def get_doctor_comment_vote(pathname, doctor_href, doctor_home):
-    url = 'https://www.haodf.com/jingyan/all-%s/%s.htm' % (doctor_home, '1')
+def get_doctor_comment_vote(pathname, doctor_href):
+    url = 'https://www.haodf.com/doctor/%s/jingyan/%s.htm' % (doctor_href, '1')
 
-    # 存在无经验的医生
+    # 获取页面内容
+    html = requests.get(url, headers=Headers).text
+    html = BeautifulSoup(html, 'lxml')
+
+    # 检验页面是否正常加载
+    div_doctor_header = html.findAll('div', attrs={'id': 'doctor_header'})[0]
+
+    # 请求评论需要的名字
+    meta_experience_name = html.findAll('meta', attrs={'name': 'mobile-agent'})[0]
+    experience_name = re.findall(r'/jingyan/all-(.+?)\.htm', str(meta_experience_name))[0]
+
+    #
+    # 投票情况
+    get_vote(pathname, doctor_href, html)
+
+    #
+    # 评价
+    get_comment(pathname, doctor_href, html)
+
+    #
+    # 页数
     try:
-        # 获取页面内容
-        html = requests.get(url, headers=Headers).text
-        html = BeautifulSoup(html, 'lxml')
+        div_page = html.findAll('div', attrs={'class': 'p_bar'})[0]
+        a_page = div_page.findAll('a', attrs={'class': 'p_text'})[0]
+        page = re.findall(r'(\d+)', str(a_page))[0]
+        for j in range(2, int(page)+1):
+            url = 'https://www.haodf.com/jingyan/all-%s/%s.htm' % (experience_name, str(j))
 
-        #
-        # 投票情况
-        get_vote(pathname, doctor_href, html)
+            # 获取页面内容
+            sleep(randint(2, 4))
+            html = requests.get(url, headers=Headers).text
+            html = BeautifulSoup(html, 'lxml')
 
-        #
-        # 评价
-        get_comment(pathname, doctor_href, html)
+            # 检验页面是否正常加载
+            div_doctor_header = html.findAll('div', attrs={'id': 'doctor_header'})[0]
 
-        #
-        # 页数
-        try:
-            div_page = html.findAll('div', attrs={'class': 'p_bar'})[0]
-            a_page = div_page.findAll('a', attrs={'class': 'p_text'})[0]
-            page = re.findall(r'(\d+)', str(a_page))[0]
-            for j in range(2, int(page)+1):
-                url = 'https://www.haodf.com/jingyan/all-%s/%s.htm' % (doctor_home, str(j))
-
-                # 获取页面内容
-                html = requests.get(url, headers=Headers).text
-                html = BeautifulSoup(html, 'lxml')
-
-                # 评价
-                get_comment(pathname, doctor_href, html)
-        except:
-            return
-
+            # 评价
+            get_comment(pathname, doctor_href, html)
     except:
         return
 
@@ -59,7 +66,11 @@ def get_doctor_comment_vote(pathname, doctor_href, doctor_home):
 def get_vote(pathname, doctor_href, html):
     #
     # 投票情况
-    div_disease_group = html.findAll('div', attrs={'class': 'disease_group'})[0]
+    # 无投票
+    try:
+        div_disease_group = html.findAll('div', attrs={'class': 'disease_group'})[0]
+    except:
+        return
 
     # 最近两年
     div_tabbox_now = div_disease_group.findAll('div', attrs={'class': re.compile(r'kbjy_tabbox')})[0]
@@ -95,7 +106,11 @@ def get_vote(pathname, doctor_href, html):
 def get_comment(pathname, doctor_href, html):
     # 评价
     div_comment_content = html.findAll('div', attrs={'class': 'doctorjyjy'})[0]
-    table_comment_list = div_comment_content.findAll('table', attrs={'class': 'doctorjy'})
+    # 无评论
+    try:
+        table_comment_list = div_comment_content.findAll('table', attrs={'class': 'doctorjy'})
+    except:
+        return
     for j in table_comment_list:
         #
         # 患者信息
@@ -180,14 +195,12 @@ def get_comment(pathname, doctor_href, html):
 def read_doc(pathname):
     # 全列表
     doctor_href_all_list = []
-    doctor_home_all_list = []
-    doctor_home_all_reader_list = csv.reader(open(pathname + 'doctor.csv', 'r'))
+    doctor_href_all_reader_list = csv.reader(open(pathname + 'doctor.csv', 'r'))
     # 删掉第一行
     n = 0
-    for j in doctor_home_all_reader_list:
+    for j in doctor_href_all_reader_list:
         if n != 0:
             doctor_href_all_list.append(j[1])
-            doctor_home_all_list.append(j[2])
         n += 1
 
     # 已完成列表
@@ -203,13 +216,11 @@ def read_doc(pathname):
 
     # 待爬取列表
     doctor_href_list = []
-    doctor_home_list = []
-    for j in range(len(doctor_home_all_list)):
+    for j in range(len(doctor_href_all_list)):
         if doctor_href_all_list[j] not in doctor_href_finish_set:
             doctor_href_list.append(doctor_href_all_list[j])
-            doctor_home_list.append(doctor_home_all_list[j])
 
-    return doctor_href_list, doctor_home_list
+    return doctor_href_list
 
 
 def write_vote_table(pathname):
@@ -324,11 +335,10 @@ def write_error(pathname, doctor_href):
 
 
 class MyThread(threading.Thread):
-    def __init__(self, pathname, doctor_href_list, doctor_home_list):
+    def __init__(self, pathname, doctor_href_list):
         threading.Thread.__init__(self)
         self.pathname = pathname
         self.doctor_href_list = doctor_href_list
-        self.doctor_home_list = doctor_home_list
 
     def run(self):
         # 线程名
@@ -341,9 +351,10 @@ class MyThread(threading.Thread):
             start = time.time()
 
             print('--------------------------------------------------------------------')
+            sleep(randint(2, 5))
             try:
                 # 获取医院细节信息
-                get_doctor_comment_vote(self.pathname, self.doctor_href_list[j], self.doctor_home_list[j])
+                get_doctor_comment_vote(self.pathname, self.doctor_href_list[j])
 
                 # 写入成功
                 write_finish(self.pathname, self.doctor_href_list[j])
@@ -373,11 +384,11 @@ if __name__ == '__main__':
     write_comment_table(my_pathname)
 
     # 获取待爬取列表
-    my_doctor_href_list, my_doctor_home_list = read_doc(my_pathname)
+    my_doctor_href_list = read_doc(my_pathname)
 
-    # get_doctor_comment_vote(my_pathname, 'DE4r0BCkuHzduxnzSQZaNDNGERReY', 'dizhenguo')
-    # get_doctor_comment_vote(my_pathname, my_doctor_href_list[1], my_doctor_home_list[1])
-    # write_finish(my_pathname, 'DE4r0BCkuHzduxnzSQZaNDNGERReY')
+    # get_doctor_comment_vote(my_pathname, my_doctor_href_list[1])
+    # get_doctor_comment_vote(my_pathname, 'DE4r0BCkuHzdeKnRD-DWKEMSMwtPM')
+    # write_finish(my_pathname, 'DE4r0BCkuHzdeKnRD-DWKEMSMwtPM')
 
     # 将医生分成5等份
     my_doctor_href_list1 = my_doctor_href_list[int(len(my_doctor_href_list)/5)*0:int(len(my_doctor_href_list)/5)*1]
@@ -386,19 +397,12 @@ if __name__ == '__main__':
     my_doctor_href_list4 = my_doctor_href_list[int(len(my_doctor_href_list)/5)*3:int(len(my_doctor_href_list)/5)*4]
     my_doctor_href_list5 = my_doctor_href_list[int(len(my_doctor_href_list)/5)*4:len(my_doctor_href_list)]
 
-    # 将医生分成5等份
-    my_doctor_home_list1 = my_doctor_home_list[int(len(my_doctor_home_list)/5)*0:int(len(my_doctor_home_list)/5)*1]
-    my_doctor_home_list2 = my_doctor_home_list[int(len(my_doctor_home_list)/5)*1:int(len(my_doctor_home_list)/5)*2]
-    my_doctor_home_list3 = my_doctor_home_list[int(len(my_doctor_home_list)/5)*2:int(len(my_doctor_home_list)/5)*3]
-    my_doctor_home_list4 = my_doctor_home_list[int(len(my_doctor_home_list)/5)*3:int(len(my_doctor_home_list)/5)*4]
-    my_doctor_home_list5 = my_doctor_home_list[int(len(my_doctor_home_list)/5)*4:len(my_doctor_home_list)]
-
     # 执行多线程
-    t1 = MyThread(pathname=my_pathname, doctor_href_list=my_doctor_href_list1, doctor_home_list=my_doctor_home_list1)
-    t2 = MyThread(pathname=my_pathname, doctor_href_list=my_doctor_href_list2, doctor_home_list=my_doctor_home_list2)
-    t3 = MyThread(pathname=my_pathname, doctor_href_list=my_doctor_href_list3, doctor_home_list=my_doctor_home_list3)
-    t4 = MyThread(pathname=my_pathname, doctor_href_list=my_doctor_href_list4, doctor_home_list=my_doctor_home_list4)
-    t5 = MyThread(pathname=my_pathname, doctor_href_list=my_doctor_href_list5, doctor_home_list=my_doctor_home_list5)
+    t1 = MyThread(pathname=my_pathname, doctor_href_list=my_doctor_href_list1)
+    t2 = MyThread(pathname=my_pathname, doctor_href_list=my_doctor_href_list2)
+    t3 = MyThread(pathname=my_pathname, doctor_href_list=my_doctor_href_list3)
+    t4 = MyThread(pathname=my_pathname, doctor_href_list=my_doctor_href_list4)
+    t5 = MyThread(pathname=my_pathname, doctor_href_list=my_doctor_href_list5)
 
     t1.start()
     t2.start()

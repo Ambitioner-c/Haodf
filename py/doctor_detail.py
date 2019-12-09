@@ -93,12 +93,12 @@ def write_table(pathname):
                 return
             else:
                 # 写入表头
-                with open(pathname + 'doctor_detail.csv', 'a') as doctor_detail:
-                    doctor_detail_writer = csv.writer(doctor_detail)
+                with open(pathname + 'doctor.csv', 'a') as doctor:
+                    doctor_writer = csv.writer(doctor)
 
                     # 写入字段
-                    fields = ['doctor_href', 'doctor_id', 'treatment', 'attitude', 'helps', 'help']
-                    doctor_detail_writer.writerow(fields)
+                    fields = ['office_href', 'doctor_href', 'doctor_room', 'doctor_name']
+                    doctor_writer.writerow(fields)
     except:
         # 写入表头
         with open(pathname + 'doctor.csv', 'a') as doctor:

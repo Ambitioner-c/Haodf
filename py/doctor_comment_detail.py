@@ -26,7 +26,14 @@ def get_doctor_comment_vote(pathname, doctor_href):
     html = BeautifulSoup(html, 'lxml')
 
     # 检验页面是否正常加载
-    div_doctor_header = html.findAll('div', attrs={'id': 'doctor_header'})[0]
+    try:
+        div_doctor_header = html.findAll('div', attrs={'id': 'doctor_header'})[0]
+    except:
+        sleep(30)
+
+        # 获取页面内容
+        html = requests.get(url, headers=Headers).text
+        html = BeautifulSoup(html, 'lxml')
 
     # 请求评论需要的名字
     meta_experience_name = html.findAll('meta', attrs={'name': 'mobile-agent'})[0]
@@ -49,13 +56,21 @@ def get_doctor_comment_vote(pathname, doctor_href):
         for j in range(2, int(page)+1):
             url = 'https://www.haodf.com/jingyan/all-%s/%s.htm' % (experience_name, str(j))
 
+            sleep(randint(3, 5))
+
             # 获取页面内容
-            sleep(randint(2, 4))
             html = requests.get(url, headers=Headers).text
             html = BeautifulSoup(html, 'lxml')
 
             # 检验页面是否正常加载
-            div_doctor_header = html.findAll('div', attrs={'id': 'doctor_header'})[0]
+            try:
+                div_doctor_header = html.findAll('div', attrs={'id': 'doctor_header'})[0]
+            except:
+                sleep(30)
+
+                # 获取页面内容
+                html = requests.get(url, headers=Headers).text
+                html = BeautifulSoup(html, 'lxml')
 
             # 评价
             get_comment(pathname, doctor_href, html)
@@ -80,7 +95,7 @@ def get_vote(pathname, doctor_href, html):
         vote_now = ''
         for j in a_now_list:
             vote_now = vote_now + str(j).replace(' ', '') + '|'
-        vote_now = vote_now.strip('|')
+        vote_now = vote_now.strip('|').replace(',', '，')
     except:
         vote_now = '无'
 
@@ -92,7 +107,7 @@ def get_vote(pathname, doctor_href, html):
         vote_past = ''
         for j in a_past_list:
             vote_past = vote_past + str(j).replace(' ', '') + '|'
-        vote_past = vote_past.strip('|')
+        vote_past = vote_past.strip('|').replace(',', '，')
     except:
         vote_past = '无'
 
@@ -106,46 +121,48 @@ def get_vote(pathname, doctor_href, html):
 def get_comment(pathname, doctor_href, html):
     # 评价
     div_comment_content = html.findAll('div', attrs={'class': 'doctorjyjy'})[0]
-    # 无评论
+
+    # 如果无评论
     try:
         table_comment_list = div_comment_content.findAll('table', attrs={'class': 'doctorjy'})
     except:
         return
+
     for j in table_comment_list:
         #
         # 患者信息
         table_patient = j.findAll('table')[0]
         # 评价时间
         try:
-            _time = re.findall(r'>时间：(.+?)</td>', str(table_patient))[0]
+            _time = re.findall(r'>时间：(.+?)</td>', str(table_patient))[0].replace(',', '，')
         except:
             _time = '两年前'
         # 所患疾病
         try:
             a_illness = table_patient.findAll('a', attrs={'href': re.compile(r'jibing')})[0]
-            illness = re.findall(r'>(.+?)</a>', str(a_illness))[0]
+            illness = re.findall(r'>(.+?)</a>', str(a_illness))[0].replace(',', '，')
         except:
             illness = '未填'
         # 看病目的
         try:
-            purpose = re.findall(r'>看病目的：(.+?)</span>', str(table_patient))[0]
+            purpose = re.findall(r'>看病目的：(.+?)</span>', str(table_patient))[0].replace(',', '，')
         except:
             purpose = '未填'
         # 治疗方式
         try:
-            way = re.findall(r'>治疗方式：(.+?)</span>', str(table_patient))[0]
+            way = re.findall(r'>治疗方式：(.+?)</span>', str(table_patient))[0].replace(',', '，')
         except:
             way = '未填'
         # 患者主观疗效、态度
         tr_subjective_attitude = table_patient.findAll('tr')[-1]
         try:
             span_subjective = tr_subjective_attitude.findAll('span')[0]
-            subjective = re.findall(r'>(.+?)</span>', str(span_subjective))[0]
+            subjective = re.findall(r'>(.+?)</span>', str(span_subjective))[0].replace(',', '，')
         except:
             subjective = '未填'
         try:
             pan_subjective = tr_subjective_attitude.findAll('span')[1]
-            attitude = re.findall(r'>(.+?)</span>', str(pan_subjective))[0]
+            attitude = re.findall(r'>(.+?)</span>', str(pan_subjective))[0].replace(',', '，')
         except:
             attitude = '未填'
 
@@ -158,29 +175,29 @@ def get_comment(pathname, doctor_href, html):
         # 类型、评价
         try:
             td_type_experience = table_comment.findAll('td', attrs={'class': 'spacejy'})[0]
-            _type = re.findall(r'>(.+?)：</span', str(td_type_experience))[0]
-            experience = re.findall(r'</span>(.+?)</td>', str(td_type_experience))[0].strip('	').strip(' ')
+            _type = re.findall(r'>(.+?)：</span', str(td_type_experience))[0].replace(',', '，')
+            experience = re.findall(r'</span>(.+?)</td>', str(td_type_experience))[0].strip('	').strip(' ').replace(',', '，')
         except:
             _type = '未填'
             experience = '未填'
         # 选择该医生就诊的理由
         try:
-            reason = re.findall(r'选择该医生就诊的理由：</span>(.+?)</div>', str(table_comment))[0]
+            reason = re.findall(r'选择该医生就诊的理由：</span>(.+?)</div>', str(table_comment))[0].replace(',', '，')
         except:
             reason = '未填'
         # 本次挂号途径
         try:
-            approach = re.findall(r'本次挂号途径：</span>(.+?)</div>', str(table_comment))[0]
+            approach = re.findall(r'本次挂号途径：</span>(.+?)</div>', str(table_comment))[0].replace(',', '，')
         except:
             approach = '未填'
         # 目前病情状态
         try:
-            state = re.findall(r'目前病情状态：</span>(.+?)</div>', str(table_comment))[0]
+            state = re.findall(r'目前病情状态：</span>(.+?)</div>', str(table_comment))[0].replace(',', '，')
         except:
             state = '未填'
         # 住院花费或者本次看病费用总计或者门诊花费
         try:
-            cost = re.findall(r'：</span>(.+?)元</div>', str(table_comment))[0].strip('	').strip(' ')
+            cost = re.findall(r'：</span>(.+?)元</div>', str(table_comment))[0].strip('	').strip(' ').replace(',', '，')
         except:
             cost = '未填'
 

@@ -15,22 +15,9 @@ from selenium.webdriver.chrome.options import Options
 from time import sleep
 
 
-Headers = {'Accept': 'text/html,application/xhtml+xml,application/xml;'
-                     'q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
-           'Accept-Encoding': 'gzip, deflate, br',
-           'Accept-Language': 'zh-CN,zh;q=0.9',
-           'Cache-Control': 'max-age=0',
-           'Connection': 'keep-alive',
-           'Sec-Fetch-Mode': 'navigate',
-           'Sec-Fetch-Site': 'same-origin',
-           'Sec-Fetch-User': '?1',
-           'Upgrade-Insecure-Requests': '1',
-           'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) '
+Headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) '
                          'AppleWebKit/537.36 (KHTML, like Gecko) '
-                         'Chrome/78.0.3904.108 Safari/537.36',
-           'Host': '',
-           'Referer': ''}
-Cookies = {'Cookie': ''}
+                         'Chrome/78.0.3904.108 Safari/537.36'}
 
 
 def get_driver(executable_path):
@@ -129,13 +116,13 @@ def get_doctor_home(driver, pathname, doctor_href, doctor_home):
     try:
         # 擅长
         p_skill = html_intro.findAll('p', attrs={'class': 'hh'})[0]
-        skill = ('' + p_skill.text).replace(' ', '').replace('"', '').replace('\\n', '')
+        skill = ('' + p_skill.text).replace(' ', '').replace('"', '').replace('\\n', '').replace(',', '，')
     except:
         skill = ''
     try:
         # 简介
         p_intro = html_intro.findAll('p', attrs={'class': 'hh'})[1]
-        introduction = ('' + p_intro.text).replace(' ', '').replace('"', '').replace('\\n', '')
+        introduction = ('' + p_intro.text).replace(' ', '').replace('"', '').replace('\\n', '').replace(',', '，')
     except:
         introduction = ''
 
@@ -152,7 +139,7 @@ def get_doctor_home(driver, pathname, doctor_href, doctor_home):
         span_abstract = div_center.findAll('span', attrs={'id': 'span_announce_title'})[0]
         p_abstract = div_center.findAll('p', attrs={'id': 'p_announce'})[0]
         abstract = span_abstract.text + '|' + p_abstract.text
-        abstract = abstract.replace(' ', '').replace('\n', '')
+        abstract = abstract.replace(' ', '').replace('\n', '').replace(',', '，')
     except:
         abstract = ''
 
@@ -398,8 +385,8 @@ if __name__ == '__main__':
 
     # 获取待爬取列表
     my_doctor_href_list, my_doctor_home_list = read_doc(my_pathname)
-    my_doctor_href_list = my_doctor_href_list[0: 35000]
-    my_doctor_home_list = my_doctor_home_list[0: 35000]
+    my_doctor_href_list = my_doctor_href_list[2000: ]
+    my_doctor_home_list = my_doctor_home_list[2000: ]
 
     # get_doctor_home(my_driver, my_pathname, my_doctor_href_list[0], my_doctor_home_list[0])
     # get_doctor_home(my_driver, my_pathname, 'DE4rO-XCoLUmy11ccTieBvzKOb', 'sunandr')
@@ -416,14 +403,6 @@ if __name__ == '__main__':
     my_doctor_home_list3 = my_doctor_home_list[int(len(my_doctor_home_list)/3)*2:len(my_doctor_home_list)]
 
     # 执行多线程
-    t1 = MyThread(pathname=my_pathname, doctor_href_list=my_doctor_href_list1, doctor_home_list=my_doctor_home_list1)
-    t2 = MyThread(pathname=my_pathname, doctor_href_list=my_doctor_href_list2, doctor_home_list=my_doctor_home_list2)
-    t3 = MyThread(pathname=my_pathname, doctor_href_list=my_doctor_href_list3, doctor_home_list=my_doctor_home_list3)
+    t1 = MyThread(pathname=my_pathname, doctor_href_list=my_doctor_href_list, doctor_home_list=my_doctor_home_list)
 
     t1.start()
-    t2.start()
-    t3.start()
-
-    t1.join()
-    t2.join()
-    t3.join()

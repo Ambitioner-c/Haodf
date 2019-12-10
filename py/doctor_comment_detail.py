@@ -223,7 +223,7 @@ def read_doc(pathname):
     # 已完成列表
     try:
         doctor_href_finish_list = []
-        doctor_href_finish_reader_list = csv.reader(open(pathname + 'doctor_href_detail_finish.csv', 'r'))
+        doctor_href_finish_reader_list = csv.reader(open(pathname + 'doctor_comment_detail_finish.csv', 'r'))
         for j in doctor_href_finish_reader_list:
             doctor_href_finish_list.append(j[0])
         doctor_href_finish_set = set(doctor_href_finish_list)

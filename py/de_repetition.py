@@ -14,14 +14,14 @@ import csv
 
 
 # 判断文件是否存在重复
-doctor_home_detail = csv.reader(open('../data/doctor_home_detail_finish2.csv', 'r'))
-
-doctor_href_list = []
-for i in doctor_home_detail:
-    doctor_href_list.append(i[0])
-doctor_href_set = set(doctor_href_list)
-print(len(doctor_href_list))
-print(len(doctor_href_set))
+# doctor_detail = csv.reader(open('../data/doctor_article_detail_finish.csv', 'r'))
+#
+# doctor_list = []
+# for i in doctor_detail:
+#     doctor_list.append(i[0])
+# doctor_set = set(doctor_list)
+# print(len(doctor_list))
+# print(len(doctor_set))
 
 
 # 检测是否存在逗号

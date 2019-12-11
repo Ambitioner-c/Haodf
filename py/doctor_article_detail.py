@@ -3,7 +3,7 @@
 # time   : 2019/12/11 下午3:14
 """
 author: cfl
-    获取医生的文章信息。
+    获取医生的文章信息
 """
 from bs4 import BeautifulSoup
 import re
@@ -249,16 +249,16 @@ class MyThread(threading.Thread):
                 write_finish(self.pathname, self.doctor_href_list[j])
 
                 finish = finish + 1
-                print('线程(%s):已完成%s个医生!' % (thread_name, finish))
+                print('线程(%s):已完成%s个article!' % (thread_name, finish))
             except:
                 os.system('spd-say "error"')
-                print('\033[5;30;47m【错误：%s】\033[0m获取数据出现异常！' % j)
+                print('\033[5;30;47m【错误：%s】\033[0m获取数据出现异常！' % self.doctor_href_list[j])
 
                 # 写入错误
                 write_error(self.pathname, self.doctor_href_list[j])
 
                 error = error + 1
-                print('线程(%s):已错误%s个医生!' % (thread_name, error))
+                print('线程(%s):已错误%s个article!' % (thread_name, error))
 
                 continue
             end = time.time()

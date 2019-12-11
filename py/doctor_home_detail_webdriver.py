@@ -105,8 +105,11 @@ def get_doctor_home(driver, pathname, doctor_href, doctor_home):
         star = ''
     # 推荐热度
     li_recommend = ul_star_recommend.findAll('li', attrs={'': ''})[-2]
-    i_recommend = li_recommend.findAll('i', attrs={'class': 'bigredinfo'})[-1]
-    recommend = re.findall(r'>(.+?)</i>', str(i_recommend))[0]
+    try:
+        i_recommend = li_recommend.findAll('i', attrs={'class': 'bigredinfo'})[-1]
+        recommend = re.findall(r'>(.+?)</i>', str(i_recommend))[0]
+    except:
+        recommend = '推荐数据核实中'
 
     # 擅长、简介
     url_intro = url + '/api/index/ajaxdoctorintro?uname=%s' % doctor_home
@@ -390,20 +393,20 @@ if __name__ == '__main__':
     # my_doctor_home_list = my_doctor_home_list[2500:]
 
     # get_doctor_home(my_driver, my_pathname, my_doctor_href_list[0], my_doctor_home_list[0])
-    # get_doctor_home(my_driver, my_pathname, 'DE4r0Fy0C9Luhnz9eGmIC7fJKXY-1sBh8', 'doctoradong')
-    # write_finish(my_pathname, 'DE4r0Fy0C9Luhnz9eGmIC7fJKXY-1sBh8')
+    # get_doctor_home(my_driver, my_pathname, 'DE4r08xQdKSLf-2EkxEsNJ7qcZX0', 'qianqiuhai')
+    # write_finish(my_pathname, 'DE4r08xQdKSLf-2EkxEsNJ7qcZX0')
 
-    # # 将医生分成3等份
-    # my_doctor_href_list1 = my_doctor_href_list[int(len(my_doctor_href_list)/3)*0:int(len(my_doctor_href_list)/3)*1]
-    # my_doctor_href_list2 = my_doctor_href_list[int(len(my_doctor_href_list)/3)*1:int(len(my_doctor_href_list)/3)*2]
-    # my_doctor_href_list3 = my_doctor_href_list[int(len(my_doctor_href_list)/3)*2:len(my_doctor_href_list)]
-    #
-    # # 将医生分成3等份
-    # my_doctor_home_list1 = my_doctor_home_list[int(len(my_doctor_home_list)/3)*0:int(len(my_doctor_home_list)/3)*1]
-    # my_doctor_home_list2 = my_doctor_home_list[int(len(my_doctor_home_list)/3)*1:int(len(my_doctor_home_list)/3)*2]
-    # my_doctor_home_list3 = my_doctor_home_list[int(len(my_doctor_home_list)/3)*2:len(my_doctor_home_list)]
+    # 将医生分成3等份
+    my_doctor_href_list1 = my_doctor_href_list[int(len(my_doctor_href_list)/3)*0:int(len(my_doctor_href_list)/3)*1]
+    my_doctor_href_list2 = my_doctor_href_list[int(len(my_doctor_href_list)/3)*1:int(len(my_doctor_href_list)/3)*2]
+    my_doctor_href_list3 = my_doctor_href_list[int(len(my_doctor_href_list)/3)*2:len(my_doctor_href_list)]
 
-    # 执行多线程
+    # 将医生分成3等份
+    my_doctor_home_list1 = my_doctor_home_list[int(len(my_doctor_home_list)/3)*0:int(len(my_doctor_home_list)/3)*1]
+    my_doctor_home_list2 = my_doctor_home_list[int(len(my_doctor_home_list)/3)*1:int(len(my_doctor_home_list)/3)*2]
+    my_doctor_home_list3 = my_doctor_home_list[int(len(my_doctor_home_list)/3)*2:len(my_doctor_home_list)]
+
+    执行多线程
     t1 = MyThread(pathname=my_pathname, doctor_href_list=my_doctor_href_list, doctor_home_list=my_doctor_home_list)
 
     t1.start()

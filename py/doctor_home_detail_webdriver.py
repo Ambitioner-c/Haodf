@@ -65,8 +65,14 @@ def get_doctor_home(driver, pathname, doctor_href, doctor_home):
     # html = requests.get(url, headers=Headers, cookies=Cookies).text
 
     # 检验页面是否正常加载
+    n = 0
     while '<title>' not in driver.page_source:
-        sleep(1)
+        n = n + 1
+        if n != 30:
+            sleep(1)
+        else:
+            # 强制退出
+            break
     html = driver.page_source
     html = BeautifulSoup(html, 'lxml')
 

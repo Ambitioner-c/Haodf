@@ -46,13 +46,17 @@ def get_doctor_gift(pathname, doctor_href, doctor_home):
         # 礼物列表
         li_gift_list = []
         ul_gift = html.findAll('ul', attrs={'class': re.compile(r'gift_wall_main')})[0]
-        ul_gift_hidden = html.findAll('ul', attrs={'class': re.compile(r'gift_wall_main')})[1]
         li_gift_list.extend(ul_gift.findAll('li'))
-        li_gift_list.extend(ul_gift_hidden.findAll('li'))
+        try:
+            ul_gift_hidden = html.findAll('ul', attrs={'id': re.compile(r'hasShowHidden')})[0]
+            li_gift_list.extend(ul_gift_hidden.findAll('li'))
+        except:
+            li_gift_list.extend([])
 
         gifts = ''
         for j in li_gift_list:
             p_name_num = j.findAll('p', attrs={'class': 'gift_name'})[0]
+            print(p_name_num)
 
             # 礼物名
             name = re.findall(r'>(.+?)\(', str(p_name_num))[0]
@@ -221,37 +225,37 @@ if __name__ == '__main__':
     my_doctor_href_list, my_doctor_home_list = read_doc(my_pathname)
 
     # get_doctor_gift(my_pathname, my_doctor_href_list[0], my_doctor_home_list[0])
-    # get_doctor_gift(my_pathname, 'DE4r0Fy0C9Lug0ZXirqPBKtPECdSRGpar', 'sangmudan')
-    # write_finish(my_pathname, 'DE4r0BCkuHzdeKnRD-DWKEMSMwtPM')
+    get_doctor_gift(my_pathname, 'DE4r0Fy0C9LuZMTNhlwc224tMuLDQvLT1', 'zhongjia217')
+    write_finish(my_pathname, 'DE4r0Fy0C9LuZMTNhlwc224tMuLDQvLT1')
 
-    # 将医生分成5等份
-    my_doctor_href_list1 = my_doctor_href_list[int(len(my_doctor_href_list)/5)*0:int(len(my_doctor_href_list)/5)*1]
-    my_doctor_href_list2 = my_doctor_href_list[int(len(my_doctor_href_list)/5)*1:int(len(my_doctor_href_list)/5)*2]
-    my_doctor_href_list3 = my_doctor_href_list[int(len(my_doctor_href_list)/5)*2:int(len(my_doctor_href_list)/5)*3]
-    my_doctor_href_list4 = my_doctor_href_list[int(len(my_doctor_href_list)/5)*3:int(len(my_doctor_href_list)/5)*4]
-    my_doctor_href_list5 = my_doctor_href_list[int(len(my_doctor_href_list)/5)*4:len(my_doctor_href_list)]
-
-    my_doctor_home_list1 = my_doctor_home_list[int(len(my_doctor_home_list)/5)*0:int(len(my_doctor_home_list)/5)*1]
-    my_doctor_home_list2 = my_doctor_home_list[int(len(my_doctor_home_list)/5)*1:int(len(my_doctor_home_list)/5)*2]
-    my_doctor_home_list3 = my_doctor_home_list[int(len(my_doctor_home_list)/5)*2:int(len(my_doctor_home_list)/5)*3]
-    my_doctor_home_list4 = my_doctor_home_list[int(len(my_doctor_home_list)/5)*3:int(len(my_doctor_home_list)/5)*4]
-    my_doctor_home_list5 = my_doctor_home_list[int(len(my_doctor_home_list)/5)*4:len(my_doctor_home_list)]
-
-    # 执行多线程
-    t1 = MyThread(pathname=my_pathname, doctor_href_list=my_doctor_href_list1, doctor_home_list=my_doctor_home_list1)
-    t2 = MyThread(pathname=my_pathname, doctor_href_list=my_doctor_href_list2, doctor_home_list=my_doctor_home_list2)
-    t3 = MyThread(pathname=my_pathname, doctor_href_list=my_doctor_href_list3, doctor_home_list=my_doctor_home_list3)
-    t4 = MyThread(pathname=my_pathname, doctor_href_list=my_doctor_href_list4, doctor_home_list=my_doctor_home_list4)
-    t5 = MyThread(pathname=my_pathname, doctor_href_list=my_doctor_href_list5, doctor_home_list=my_doctor_home_list5)
-
-    t1.start()
-    t2.start()
-    t3.start()
-    t4.start()
-    t5.start()
-
-    t1.join()
-    t2.join()
-    t3.join()
-    t4.join()
-    t5.join()
+    # # 将医生分成5等份
+    # my_doctor_href_list1 = my_doctor_href_list[int(len(my_doctor_href_list)/5)*0:int(len(my_doctor_href_list)/5)*1]
+    # my_doctor_href_list2 = my_doctor_href_list[int(len(my_doctor_href_list)/5)*1:int(len(my_doctor_href_list)/5)*2]
+    # my_doctor_href_list3 = my_doctor_href_list[int(len(my_doctor_href_list)/5)*2:int(len(my_doctor_href_list)/5)*3]
+    # my_doctor_href_list4 = my_doctor_href_list[int(len(my_doctor_href_list)/5)*3:int(len(my_doctor_href_list)/5)*4]
+    # my_doctor_href_list5 = my_doctor_href_list[int(len(my_doctor_href_list)/5)*4:len(my_doctor_href_list)]
+    #
+    # my_doctor_home_list1 = my_doctor_home_list[int(len(my_doctor_home_list)/5)*0:int(len(my_doctor_home_list)/5)*1]
+    # my_doctor_home_list2 = my_doctor_home_list[int(len(my_doctor_home_list)/5)*1:int(len(my_doctor_home_list)/5)*2]
+    # my_doctor_home_list3 = my_doctor_home_list[int(len(my_doctor_home_list)/5)*2:int(len(my_doctor_home_list)/5)*3]
+    # my_doctor_home_list4 = my_doctor_home_list[int(len(my_doctor_home_list)/5)*3:int(len(my_doctor_home_list)/5)*4]
+    # my_doctor_home_list5 = my_doctor_home_list[int(len(my_doctor_home_list)/5)*4:len(my_doctor_home_list)]
+    #
+    # # 执行多线程
+    # t1 = MyThread(pathname=my_pathname, doctor_href_list=my_doctor_href_list1, doctor_home_list=my_doctor_home_list1)
+    # t2 = MyThread(pathname=my_pathname, doctor_href_list=my_doctor_href_list2, doctor_home_list=my_doctor_home_list2)
+    # t3 = MyThread(pathname=my_pathname, doctor_href_list=my_doctor_href_list3, doctor_home_list=my_doctor_home_list3)
+    # t4 = MyThread(pathname=my_pathname, doctor_href_list=my_doctor_href_list4, doctor_home_list=my_doctor_home_list4)
+    # t5 = MyThread(pathname=my_pathname, doctor_href_list=my_doctor_href_list5, doctor_home_list=my_doctor_home_list5)
+    #
+    # t1.start()
+    # t2.start()
+    # t3.start()
+    # t4.start()
+    # t5.start()
+    #
+    # t1.join()
+    # t2.join()
+    # t3.join()
+    # t4.join()
+    # t5.join()

@@ -275,8 +275,8 @@ if __name__ == '__main__':
     my_doctor_href_list, my_doctor_home_list = read_doc(my_pathname)
 
     # get_doctor_article(my_pathname, my_doctor_href_list[0], my_doctor_home_list[0])
-    # get_doctor_comment_vote(my_pathname, 'DE4r0BCkuHzdeKnRD-DWKEMSMwtPM')
-    # write_finish(my_pathname, 'DE4r0BCkuHzdeKnRD-DWKEMSMwtPM')
+    # get_doctor_article(my_pathname, 'DE4r0Fy0C9LuSQeC12Enhb68YSpIkSXQi', 'sw8011')
+    # write_finish(my_pathname, 'DE4r0Fy0C9LuSQeC12Enhb68YSpIkSXQi')
 
     # 将医生分成5等份
     my_doctor_href_list1 = my_doctor_href_list[int(len(my_doctor_href_list)/5)*0:int(len(my_doctor_href_list)/5)*1]

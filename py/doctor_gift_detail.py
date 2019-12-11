@@ -56,7 +56,6 @@ def get_doctor_gift(pathname, doctor_href, doctor_home):
         gifts = ''
         for j in li_gift_list:
             p_name_num = j.findAll('p', attrs={'class': 'gift_name'})[0]
-            print(p_name_num)
 
             # 礼物名
             name = re.findall(r'>(.+?)\(', str(p_name_num))[0]

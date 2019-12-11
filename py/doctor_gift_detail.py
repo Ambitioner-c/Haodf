@@ -224,8 +224,8 @@ if __name__ == '__main__':
     my_doctor_href_list, my_doctor_home_list = read_doc(my_pathname)
 
     # get_doctor_gift(my_pathname, my_doctor_href_list[0], my_doctor_home_list[0])
-    # get_doctor_gift(my_pathname, 'DE4r0Fy0C9LuZMTNhlwc224tMuLDQvLT1', 'zhongjia217')
-    # write_finish(my_pathname, 'DE4r0Fy0C9LuZMTNhlwc224tMuLDQvLT1')
+    # get_doctor_gift(my_pathname, 'DE4r0Fy0C9LuGN-oXKOcaIU0pMy6P-9em', 'caifeng4kq')
+    # write_finish(my_pathname, 'DE4r0Fy0C9LuGN-oXKOcaIU0pMy6P-9em')
 
     # 将医生分成5等份
     my_doctor_href_list1 = my_doctor_href_list[int(len(my_doctor_href_list)/5)*0:int(len(my_doctor_href_list)/5)*1]

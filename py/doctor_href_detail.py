@@ -27,6 +27,17 @@ def get_doctor_href(pathname, doctor_href):
     html = requests.get(url, headers=Headers).text
     html = BeautifulSoup(html, 'lxml')
 
+    # 检验页面是否正常加载
+    try:
+        div_doctor_header = html.findAll('div', attrs={'id': 'bp_doctor_about'})[0]
+    except:
+        sleep(30)
+
+        # 获取页面内容
+        html = requests.get(url, headers=Headers).text
+        html = BeautifulSoup(html, 'lxml')
+
+    # 获取script代码
     scripts = html.findAll('script')
 
     bp_doctor_about = ''
@@ -60,16 +71,20 @@ def get_info(pathname, doctor_href, bp_doctor_about, bp_doctor_servicestar):
 
     # 疗效满意度
     treatment = re.findall(r'\\u7597\\u6548\\u6ee1\\u610f\\u5ea6\\uff1a(.+?)<', str(bp_doctor_about))[0]
-    treatment = treatment.encode('utf-8').decode('unicode_escape')
+    if '暂无' == treatment.encode('utf-8').decode('unicode_escape'):
+        treatment = ''
     # 态度满意度
     attitude = re.findall(r'\\u6001\\u5ea6\\u6ee1\\u610f\\u5ea6\\uff1a(.+?)<', str(bp_doctor_about))[0]
-    attitude = attitude.encode('utf-8').decode('unicode_escape')
+    if '暂无' == attitude.encode('utf-8').decode('unicode_escape'):
+        attitude = ''
     # 累计帮助患者数
     helps = re.findall(r'\\u7d2f\\u8ba1\\u5e2e\\u52a9\\u60a3\\u8005\\u6570\\uff1a(.+?)<', str(bp_doctor_about))[0]
-    helps = helps.encode('utf-8').decode('unicode_escape')
+    if '暂无' == helps.encode('utf-8').decode('unicode_escape'):
+        helps = ''
     # 近两周帮助患者数
     help_ = re.findall(r'\\u8fd1\\u4e24\\u5468\\u5e2e\\u52a9\\u60a3\\u8005\\u6570\\uff1a(.+?)<', str(bp_doctor_about))[0]
-    help_ = help_.encode('utf-8').decode('unicode_escape')
+    if '暂无' == help_.encode('utf-8').decode('unicode_escape'):
+        help_ = ''
 
     #
     # 临床经验部分

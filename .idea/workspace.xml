@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ac4c1106-e652-4ae3-b2ea-85bf769bee1d" name="Default Changelist" comment="" />
+    <list default="true" id="ac4c1106-e652-4ae3-b2ea-85bf769bee1d" name="Default Changelist" comment="获取医生主页信息成功（使用chrome的webdriver）">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,14 +30,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/py/doctor_home_detail_webdriver.py">
+        <entry file="file://$PROJECT_DIR$/py/de_repetition.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="420" column="14" lean-forward="true" selection-start-line="420" selection-start-column="14" selection-end-line="420" selection-end-column="14" />
-              <folding>
-                <element signature="e#61#90#0" expanded="true" />
-                <element signature="e#290#1029#0" />
-              </folding>
+            <state relative-caret-position="396">
+              <caret line="18" column="18" lean-forward="true" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -51,12 +49,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>]</find>
-      <find>m_title_green</find>
-      <find>hospital-label-item</find>
-      <find>serve</find>
-      <find>intro_doc-nav-mod</find>
-      <find>.csv</find>
       <find>doctor_home</find>
       <find>all</find>
       <find>eval</find>
@@ -65,9 +57,28 @@
       <find>&lt;html&gt;</find>
       <find>skill</find>
       <find>text</find>
-      <find>''</find>
       <find>my_driver</find>
+      <find>_type</find>
+      <find>comment_id</find>
+      <find>print</find>
+      <find>''</find>
+      <find>helps</find>
+      <find>doctor_header</find>
+      <find>recommend-part</find>
+      <find>r-p-part</find>
+      <find>.onPageletArrive</find>
+      <find>bp_doctor_about</find>
+      <find>text/javascript</find>
+      <find>:</find>
+      <find>,</find>
+      <find>|</find>
+      <find>\\u7597\\u6548\\u6ee1\\u610f\\u5ea6\\uff1a</find>
+      <find>\u7597\</find>
+      <find>\u7597</find>
+      <find>u610f\u5ea6\uff1a</find>
+      <find>read_doc</find>
       <find>now</find>
+      <find>open</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -86,17 +97,24 @@
       <list>
         <option value="$PROJECT_DIR$/py/yiyun.py" />
         <option value="$PROJECT_DIR$/py/yiyuan.py" />
-        <option value="$PROJECT_DIR$/py/hospital_detail.py" />
         <option value="$PROJECT_DIR$/py/hospital.py" />
         <option value="$PROJECT_DIR$/py/hospital_detail_text.py" />
-        <option value="$PROJECT_DIR$/py/office.py" />
         <option value="$PROJECT_DIR$/py/doctor.py" />
-        <option value="$PROJECT_DIR$/py/doctor_detail.py" />
         <option value="$PROJECT_DIR$/py/js.py" />
         <option value="$PROJECT_DIR$/py/doctor_home_detail2.py" />
         <option value="$PROJECT_DIR$/py/doctor_home_detail.py" />
-        <option value="$PROJECT_DIR$/py/doctor_home_detail_webdriver.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/py/doctor_detail.py" />
+        <option value="$PROJECT_DIR$/py/quchong.py" />
+        <option value="$PROJECT_DIR$/py/text.py" />
+        <option value="$PROJECT_DIR$/py/doctor_article_detail.py" />
+        <option value="$PROJECT_DIR$/py/doctor_comment_detail.py" />
+        <option value="$PROJECT_DIR$/py/doctor_gift_detail.py" />
+        <option value="$PROJECT_DIR$/py/doctor_home_detail_webdriver.py" />
+        <option value="$PROJECT_DIR$/py/doctor_href_detail.py" />
+        <option value="$PROJECT_DIR$/py/hospital_detail.py" />
+        <option value="$PROJECT_DIR$/py/office.py" />
+        <option value="$PROJECT_DIR$/py/de_repetition.py" />
       </list>
     </option>
   </component>
@@ -143,7 +161,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/py" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="fileTemplates" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -162,8 +180,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.doctor_home_detail2">
-    <configuration name="doctor" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.doctor_href_detail">
+    <configuration name="doctor_article_detail" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Haodf" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -176,7 +194,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/py/doctor.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/py/doctor_article_detail.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -185,7 +203,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="doctor_home_detail" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="doctor_comment_detail" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Haodf" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -198,7 +216,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/py/doctor_home_detail.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/py/doctor_comment_detail.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -207,7 +225,29 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="doctor_home_detail2" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="doctor_gift_detail" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Haodf" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/py" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/py/doctor_gift_detail.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="doctor_home_detail_webdriver" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Haodf" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -229,7 +269,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="js" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="doctor_href_detail" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Haodf" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -242,29 +282,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/py/js.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="office" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Haodf" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/py" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/py/office.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/py/doctor_href_detail.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -275,11 +293,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.doctor_home_detail2" />
-        <item itemvalue="Python.doctor_home_detail" />
-        <item itemvalue="Python.js" />
-        <item itemvalue="Python.doctor" />
-        <item itemvalue="Python.office" />
+        <item itemvalue="Python.doctor_href_detail" />
+        <item itemvalue="Python.doctor_gift_detail" />
+        <item itemvalue="Python.doctor_home_detail_webdriver" />
+        <item itemvalue="Python.doctor_article_detail" />
+        <item itemvalue="Python.doctor_comment_detail" />
       </list>
     </recent_temporary>
   </component>
@@ -300,48 +318,13 @@
       <workItem from="1575640776026" duration="6540000" />
       <workItem from="1575711644341" duration="131000" />
       <workItem from="1575711802262" duration="12504000" />
-    </task>
-    <task id="LOCAL-00001" summary="获取科室列表">
-      <created>1575535105816</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1575535105816</updated>
-    </task>
-    <task id="LOCAL-00002" summary="获取医院列表">
-      <created>1575535282331</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1575535282331</updated>
-    </task>
-    <task id="LOCAL-00003" summary="获取医院信息">
-      <created>1575535375409</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1575535375409</updated>
-    </task>
-    <task id="LOCAL-00004" summary="获取医院信息">
-      <created>1575542656095</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1575542656095</updated>
-    </task>
-    <task id="LOCAL-00005" summary="获取医院列表">
-      <created>1575542962097</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1575542962097</updated>
-    </task>
-    <task id="LOCAL-00006" summary="获取医院信息">
-      <created>1575543021656</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1575543021656</updated>
+      <workItem from="1575724552889" duration="51000" />
+      <workItem from="1575724888294" duration="363000" />
+      <workItem from="1575862034712" duration="33676000" />
+      <workItem from="1575979925840" duration="5417000" />
+      <workItem from="1575986374180" duration="908000" />
+      <workItem from="1575987323721" duration="49000" />
+      <workItem from="1575987544349" duration="27100000" />
     </task>
     <task id="LOCAL-00007" summary="获取医院信息(测试)">
       <created>1575543044681</created>
@@ -483,11 +466,214 @@
       <option name="project" value="LOCAL" />
       <updated>1575724287572</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="获取医生主页信息成功（使用chrome的webdriver）">
+      <created>1575724585822</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1575724585822</updated>
+    </task>
+    <task id="LOCAL-00028" summary="获取医生的评论信息">
+      <created>1575879267486</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1575879267486</updated>
+    </task>
+    <task id="LOCAL-00029" summary="获取医生列表">
+      <created>1575882112922</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1575882112922</updated>
+    </task>
+    <task id="LOCAL-00030" summary="获取医生主页信息成功（使用chrome的webdriver）">
+      <created>1575882153443</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1575882153443</updated>
+    </task>
+    <task id="LOCAL-00031" summary="获取医生的评论信息">
+      <created>1575886462766</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1575886462766</updated>
+    </task>
+    <task id="LOCAL-00032" summary="获取医生主页信息成功（使用chrome的webdriver）">
+      <created>1575980071987</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1575980071987</updated>
+    </task>
+    <task id="LOCAL-00033" summary="获取医生评论信息">
+      <created>1575980098897</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1575980098897</updated>
+    </task>
+    <task id="LOCAL-00034" summary="去重">
+      <created>1575980125026</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1575980125026</updated>
+    </task>
+    <task id="LOCAL-00035" summary="获取医生评价信息">
+      <created>1575986133717</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1575986133717</updated>
+    </task>
+    <task id="LOCAL-00036" summary="获取医生信息中心页、临床经验">
+      <created>1576039987443</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1576039987443</updated>
+    </task>
+    <task id="LOCAL-00037" summary="获取医生信息中心页、临床经验">
+      <created>1576046896452</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1576046896452</updated>
+    </task>
+    <task id="LOCAL-00038" summary="获取医生的文章信息">
+      <created>1576053419855</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1576053419855</updated>
+    </task>
+    <task id="LOCAL-00039" summary="获取医生礼物信息">
+      <created>1576069720944</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1576069720944</updated>
+    </task>
+    <task id="LOCAL-00040" summary="获取医生礼物信息">
+      <created>1576070279312</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1576070279312</updated>
+    </task>
+    <task id="LOCAL-00041" summary="获取医生礼物信息">
+      <created>1576070300173</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1576070300173</updated>
+    </task>
+    <task id="LOCAL-00042" summary="获取医生礼物信息">
+      <created>1576071306261</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1576071306261</updated>
+    </task>
+    <task id="LOCAL-00043" summary="获取医生的评论信息">
+      <created>1576072016066</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1576072016066</updated>
+    </task>
+    <task id="LOCAL-00044" summary="获取医生的文章信息">
+      <created>1576072740142</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1576072740143</updated>
+    </task>
+    <task id="LOCAL-00045" summary="获取医生主页信息成功（使用chrome的webdriver）">
+      <created>1576073447623</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1576073447623</updated>
+    </task>
+    <task id="LOCAL-00046" summary="获取医生的礼物信息">
+      <created>1576073661034</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1576073661034</updated>
+    </task>
+    <task id="LOCAL-00047" summary="获取医生信息中心页、临床经验">
+      <created>1576074078191</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1576074078191</updated>
+    </task>
+    <task id="LOCAL-00048" summary="获取医生的文章信息">
+      <created>1576074170628</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1576074170628</updated>
+    </task>
+    <task id="LOCAL-00049" summary="获取医生的评论信息">
+      <created>1576074245800</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1576074245800</updated>
+    </task>
+    <task id="LOCAL-00050" summary="获取医生的礼物信息">
+      <created>1576074307661</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1576074307661</updated>
+    </task>
+    <task id="LOCAL-00051" summary="获取医生主页信息成功（webdriver）">
+      <created>1576074383390</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1576074383390</updated>
+    </task>
+    <task id="LOCAL-00052" summary="获取医生信息中心页、临床经验">
+      <created>1576074439723</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1576074439723</updated>
+    </task>
+    <task id="LOCAL-00053" summary="获取医院信息">
+      <created>1576074488107</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1576074488107</updated>
+    </task>
+    <task id="LOCAL-00054" summary="获取科室列表">
+      <created>1576074526294</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1576074526295</updated>
+    </task>
+    <task id="LOCAL-00055" summary="文件去重">
+      <created>1576074569770</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1576074569770</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="90613000" />
+    <option name="totallyTimeSpent" value="158177000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -500,15 +686,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1366" y="0" width="1920" height="1050" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49836066" visible="true" weight="0.16559486" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49836066" visible="true" weight="0.1800643" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.50163937" side_tool="true" weight="0.13879958" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.7518757" weight="0.16924779" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.37278762" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.750268" weight="0.22455752" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4994641" weight="0.37278762" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Docker" order="6" show_stripe_button="false" />
@@ -517,7 +702,7 @@
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49732047" weight="0.17920354" />
       <window_info anchor="bottom" id="Python Console" order="11" sideWeight="0.4989282" weight="0.32964602" />
-      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.24812433" side_tool="true" visible="true" weight="0.16924779" />
+      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.24973205" side_tool="true" weight="0.3340708" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -571,25 +756,43 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="获取医院列表、医院信息、科室列表" />
     <MESSAGE value="获取医院列表" />
-    <MESSAGE value="获取医院信息" />
     <MESSAGE value="获取医院信息(测试)" />
-    <MESSAGE value="获取科室列表" />
-    <MESSAGE value="获取医生列表" />
     <MESSAGE value="解析js" />
     <MESSAGE value="获取医生主页信息失败" />
     <MESSAGE value="获取医生主页信息失败(通过解析js)" />
+    <MESSAGE value="获取医生列表" />
+    <MESSAGE value="获取医生评论信息" />
+    <MESSAGE value="去重" />
+    <MESSAGE value="获取医生评价信息" />
+    <MESSAGE value="获取医生礼物信息" />
     <MESSAGE value="获取医生主页信息成功（使用chrome的webdriver）" />
-    <option name="LAST_COMMIT_MESSAGE" value="获取医生主页信息成功（使用chrome的webdriver）" />
+    <MESSAGE value="获取医生的文章信息" />
+    <MESSAGE value="获取医生的评论信息" />
+    <MESSAGE value="获取医生的礼物信息" />
+    <MESSAGE value="获取医生主页信息成功（webdriver）" />
+    <MESSAGE value="获取医生信息中心页、临床经验" />
+    <MESSAGE value="获取医院信息" />
+    <MESSAGE value="获取科室列表" />
+    <MESSAGE value="文件去重" />
+    <option name="LAST_COMMIT_MESSAGE" value="文件去重" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Haodf$quchong.coverage" NAME="quchong Coverage Results" MODIFIED="1575903109654" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/py" />
+    <SUITE FILE_PATH="coverage/Haodf$doctor_gift_detail.coverage" NAME="doctor_gift_detail Coverage Results" MODIFIED="1576073586745" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/py" />
     <SUITE FILE_PATH="coverage/Haodf$hospital_detail_text.coverage" NAME="hospital_detail_text Coverage Results" MODIFIED="1575528101036" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/py" />
+    <SUITE FILE_PATH="coverage/Haodf$doctor_home_detail_webdriver.coverage" NAME="doctor_home_detail_webdriver Coverage Results" MODIFIED="1576073353119" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/py" />
     <SUITE FILE_PATH="coverage/Haodf$js.coverage" NAME="js Coverage Results" MODIFIED="1575710341571" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/py" />
+    <SUITE FILE_PATH="coverage/Haodf$doctor_href_detail.coverage" NAME="doctor_href_detail Coverage Results" MODIFIED="1576073911727" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/py" />
     <SUITE FILE_PATH="coverage/Haodf$office.coverage" NAME="office Coverage Results" MODIFIED="1575544574313" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/py" />
+    <SUITE FILE_PATH="coverage/Haodf$doctor_href_detail__1_.coverage" NAME="doctor_href_detail (1) Coverage Results" MODIFIED="1575988999461" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/py" />
     <SUITE FILE_PATH="coverage/Haodf$doctor_home_detail.coverage" NAME="doctor_home_detail Coverage Results" MODIFIED="1575713602207" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/py" />
+    <SUITE FILE_PATH="coverage/Haodf$doctor_article_detail.coverage" NAME="doctor_article_detail Coverage Results" MODIFIED="1576072525459" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/py" />
     <SUITE FILE_PATH="coverage/Haodf$hospital_detail.coverage" NAME="hospital_detail Coverage Results" MODIFIED="1575528419420" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/py" />
     <SUITE FILE_PATH="coverage/Haodf$doctor_home_detail2.coverage" NAME="doctor_home_detail2 Coverage Results" MODIFIED="1575722709118" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/py" />
     <SUITE FILE_PATH="coverage/Haodf$doctor.coverage" NAME="doctor Coverage Results" MODIFIED="1575599959072" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/py" />
+    <SUITE FILE_PATH="coverage/Haodf$doctor_comment_detail.coverage" NAME="doctor_comment_detail Coverage Results" MODIFIED="1576072070854" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/py" />
     <SUITE FILE_PATH="coverage/Haodf$yiyuan.coverage" NAME="yiyuan Coverage Results" MODIFIED="1575462314402" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/py" />
+    <SUITE FILE_PATH="coverage/Haodf$de_repetition.coverage" NAME="de_repetition Coverage Results" MODIFIED="1576054278617" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/py" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/py/__init__.py" />
@@ -607,28 +810,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/py/hospital.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" column="11" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/py/hospital_detail_text.py" />
-    <entry file="file://$PROJECT_DIR$/py/office.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="77">
-          <caret line="141" column="39" lean-forward="true" selection-start-line="141" selection-start-column="39" selection-end-line="141" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/py/doctor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="27" column="18" lean-forward="true" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.local/lib/python3.6/site-packages/requests/api.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="192">
@@ -657,13 +839,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/py/doctor_detail.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/lib/python3/dist-packages/bs4/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
@@ -678,30 +853,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/py/hospital_detail.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="214" column="8" selection-start-line="214" selection-start-column="8" selection-end-line="214" selection-end-column="55" />
-          <folding>
-            <element signature="e#191#354#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/py/js.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="21" column="68" selection-start-line="21" selection-start-column="68" selection-end-line="21" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/py/doctor_home_detail.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
@@ -709,14 +860,101 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/py/text.py" />
+    <entry file="file://$PROJECT_DIR$/py/doctor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="339">
+          <caret line="24" column="11" lean-forward="true" selection-start-line="24" selection-start-column="11" selection-end-line="24" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/py/hospital.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9">
+          <caret line="2" column="11" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/py/js.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="383">
+          <caret line="21" column="68" selection-start-line="21" selection-start-column="68" selection-end-line="21" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/py/doctor_home_detail.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="20" column="19" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/py/doctor_comment_detail.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="4" lean-forward="true" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="13" />
+          <folding>
+            <element signature="e#35#64#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/py/doctor_detail.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="25" column="9" lean-forward="true" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/py/doctor_article_detail.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="20" column="59" lean-forward="true" selection-start-line="20" selection-start-column="59" selection-end-line="20" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/py/doctor_gift_detail.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="30" column="16" lean-forward="true" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/py/doctor_home_detail_webdriver.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="420" column="14" lean-forward="true" selection-start-line="420" selection-start-column="14" selection-end-line="420" selection-end-column="14" />
+        <state relative-caret-position="352">
+          <caret line="24" column="12" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/py/doctor_href_detail.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" column="4" lean-forward="true" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/py/hospital_detail.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="4" lean-forward="true" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="10" />
           <folding>
-            <element signature="e#61#90#0" expanded="true" />
-            <element signature="e#290#1029#0" />
+            <element signature="e#191#354#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/py/office.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="4" lean-forward="true" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/py/de_repetition.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="18" column="18" lean-forward="true" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
         </state>
       </provider>
     </entry>

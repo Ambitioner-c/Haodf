@@ -64,6 +64,7 @@ def get_doctor_home(driver, pathname, doctor_href, doctor_home):
     # Cookies['Cookie'] = cookie
     # html = requests.get(url, headers=Headers, cookies=Cookies).text
 
+    # 检验页面是否正常加载
     while '<title>' not in driver.page_source:
         sleep(1)
     html = driver.page_source
@@ -80,7 +81,7 @@ def get_doctor_home(driver, pathname, doctor_href, doctor_home):
 
     # 科室
     div_office = div_up.findAll('div', attrs={'class': re.compile(r'doc_hospital')})[0]
-    p_office_list = div_office.findAll('p')
+    p_office_list = div_office.findAll('div')[0].findAll('p')
     office = ''
     for j in p_office_list:
         office = office + re.findall(r'>(.+?)</a>', str(j))[0] + '|' + re.findall(r'>(.+?)</a>', str(j))[1] + '||'
@@ -385,22 +386,22 @@ if __name__ == '__main__':
 
     # 获取待爬取列表
     my_doctor_href_list, my_doctor_home_list = read_doc(my_pathname)
-    my_doctor_href_list = my_doctor_href_list[2000: ]
-    my_doctor_home_list = my_doctor_home_list[2000: ]
+    # my_doctor_href_list = my_doctor_href_list[2500:]
+    # my_doctor_home_list = my_doctor_home_list[2500:]
 
     # get_doctor_home(my_driver, my_pathname, my_doctor_href_list[0], my_doctor_home_list[0])
-    # get_doctor_home(my_driver, my_pathname, 'DE4rO-XCoLUmy11ccTieBvzKOb', 'sunandr')
-    # write_finish(my_pathname, 'DE4rO-XCoLUmy11ccTieBvzKOb')
+    # get_doctor_home(my_driver, my_pathname, 'DE4r0Fy0C9Luhnz9eGmIC7fJKXY-1sBh8', 'doctoradong')
+    # write_finish(my_pathname, 'DE4r0Fy0C9Luhnz9eGmIC7fJKXY-1sBh8')
 
-    # 将医生分成3等份
-    my_doctor_href_list1 = my_doctor_href_list[int(len(my_doctor_href_list)/3)*0:int(len(my_doctor_href_list)/3)*1]
-    my_doctor_href_list2 = my_doctor_href_list[int(len(my_doctor_href_list)/3)*1:int(len(my_doctor_href_list)/3)*2]
-    my_doctor_href_list3 = my_doctor_href_list[int(len(my_doctor_href_list)/3)*2:len(my_doctor_href_list)]
-
-    # 将医生分成3等份
-    my_doctor_home_list1 = my_doctor_home_list[int(len(my_doctor_home_list)/3)*0:int(len(my_doctor_home_list)/3)*1]
-    my_doctor_home_list2 = my_doctor_home_list[int(len(my_doctor_home_list)/3)*1:int(len(my_doctor_home_list)/3)*2]
-    my_doctor_home_list3 = my_doctor_home_list[int(len(my_doctor_home_list)/3)*2:len(my_doctor_home_list)]
+    # # 将医生分成3等份
+    # my_doctor_href_list1 = my_doctor_href_list[int(len(my_doctor_href_list)/3)*0:int(len(my_doctor_href_list)/3)*1]
+    # my_doctor_href_list2 = my_doctor_href_list[int(len(my_doctor_href_list)/3)*1:int(len(my_doctor_href_list)/3)*2]
+    # my_doctor_href_list3 = my_doctor_href_list[int(len(my_doctor_href_list)/3)*2:len(my_doctor_href_list)]
+    #
+    # # 将医生分成3等份
+    # my_doctor_home_list1 = my_doctor_home_list[int(len(my_doctor_home_list)/3)*0:int(len(my_doctor_home_list)/3)*1]
+    # my_doctor_home_list2 = my_doctor_home_list[int(len(my_doctor_home_list)/3)*1:int(len(my_doctor_home_list)/3)*2]
+    # my_doctor_home_list3 = my_doctor_home_list[int(len(my_doctor_home_list)/3)*2:len(my_doctor_home_list)]
 
     # 执行多线程
     t1 = MyThread(pathname=my_pathname, doctor_href_list=my_doctor_href_list, doctor_home_list=my_doctor_home_list)

@@ -406,7 +406,7 @@ if __name__ == '__main__':
     my_doctor_home_list2 = my_doctor_home_list[int(len(my_doctor_home_list)/3)*1:int(len(my_doctor_home_list)/3)*2]
     my_doctor_home_list3 = my_doctor_home_list[int(len(my_doctor_home_list)/3)*2:len(my_doctor_home_list)]
 
-    执行多线程
+    # 执行多线程
     t1 = MyThread(pathname=my_pathname, doctor_href_list=my_doctor_href_list, doctor_home_list=my_doctor_home_list)
 
     t1.start()

@@ -197,7 +197,7 @@ def get_comment(pathname, doctor_href, html):
             state = '未填'
         # 住院花费或者本次看病费用总计或者门诊花费
         try:
-            cost = re.findall(r'：</span>(.+?)元</div>', str(table_comment))[0].strip('	').strip(' ').replace(',', '，')
+            cost = re.findall(r'(\d+)元', str(table_comment))[0].strip('	').strip(' ').replace(',', '，')
         except:
             cost = '未填'
 

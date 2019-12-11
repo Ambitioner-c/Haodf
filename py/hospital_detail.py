@@ -1,6 +1,6 @@
 """
 author:cfl
-    获取医院信息.
+    获取医院信息
 """
 import requests
 from bs4 import BeautifulSoup
@@ -264,7 +264,7 @@ class MyThread(threading.Thread):
                 write_finish(self.pathname, j)
 
                 finish = finish + 1
-                print('线程(%s):已完成%s个医院!' % (thread_name, finish))
+                print('线程(%s):已完成%s个hospital!' % (thread_name, finish))
             except:
                 os.system('spd-say "error"')
                 print('\033[5;30;47m【错误：%s】\033[0m获取数据出现异常！' % j)
@@ -273,7 +273,7 @@ class MyThread(threading.Thread):
                 write_error(self.pathname, j)
 
                 error = error + 1
-                print('线程(%s):已错误%s个医院!' % (thread_name, error))
+                print('线程(%s):已错误%s个hospital!' % (thread_name, error))
 
                 continue
             end = time.time()

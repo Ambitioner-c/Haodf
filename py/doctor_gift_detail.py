@@ -22,20 +22,29 @@ Headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) '
 
 
 def get_doctor_gift(pathname, doctor_href, doctor_home):
+    """
+    获取医生礼物，并写入文件
+    :param pathname:
+    :param doctor_href:
+    :param doctor_home:
+    :return:
+    """
     url = 'https://%s.haodf.com/present/presentnavigation' % doctor_home
 
     # 获取页面内容
     html = requests.get(url, headers=Headers).text
+    html = html.replace('</html>', '')
     html = BeautifulSoup(html, 'lxml')
 
-    # 检验页面是否正常加载
+    # 通过请求医生姓名，检验页面是否正常加载
     try:
-        div = html.findAll('div', attrs={'class': re.compile('doc_title')})[0]
+        h1 = html.findAll('h1', attrs={'class': re.compile('doctor-name')})[0]
     except:
         sleep(30)
 
         # 获取页面内容
         html = requests.get(url, headers=Headers).text
+        html = html.replace('</html>', '')
         html = BeautifulSoup(html, 'lxml')
 
     try:
@@ -76,6 +85,11 @@ def get_doctor_gift(pathname, doctor_href, doctor_home):
 
 
 def read_doc(pathname):
+    """
+    读取带爬列表
+    :param pathname:
+    :return: doctor_href_list, doctor_home_list
+    """
     # 全列表
     doctor_href_all_list = []
     doctor_home_all_list = []
@@ -111,6 +125,11 @@ def read_doc(pathname):
 
 
 def write_gift_table(pathname):
+    """
+    写入礼物表头
+    :param pathname:
+    :return:
+    """
     # 判断是否已经写入表头
     try:
         with open(pathname + 'doctor_gift_detail.csv', 'r') as doctor_gift_detail_reader:
@@ -145,6 +164,14 @@ def write_gift_doc(pathname,
                    doctor_href,
                    gifts,
                    now):
+    """
+    写入礼物信息
+    :param pathname:
+    :param doctor_href:
+    :param gifts:
+    :param now:
+    :return:
+    """
     # 文章页
     with open(pathname + 'doctor_gift_detail.csv', 'a') as doctor_gift_detail:
         doctor_gift_detail_writer = csv.writer(doctor_gift_detail)
@@ -156,6 +183,12 @@ def write_gift_doc(pathname,
 
 
 def write_finish(pathname, doctor_href):
+    """
+    写入成功
+    :param pathname:
+    :param doctor_href:
+    :return:
+    """
     with open(pathname + 'doctor_gift_detail_finish.csv', 'a') as doctor_gift_detail_finish:
         doctor_gift_detail_finish_writer = csv.writer(doctor_gift_detail_finish)
 
@@ -164,6 +197,12 @@ def write_finish(pathname, doctor_href):
 
 
 def write_error(pathname, doctor_href):
+    """
+    写入失败
+    :param pathname:
+    :param doctor_href:
+    :return:
+    """
     with open(pathname + 'doctor_gift_detail_error.csv', 'a') as doctor_gift_detail_error:
         doctor_gift_detail_error_writer = csv.writer(doctor_gift_detail_error)
 
@@ -224,8 +263,8 @@ if __name__ == '__main__':
     my_doctor_href_list, my_doctor_home_list = read_doc(my_pathname)
 
     # get_doctor_gift(my_pathname, my_doctor_href_list[0], my_doctor_home_list[0])
-    # get_doctor_gift(my_pathname, 'DE4r0Fy0C9LuGN-oXKOcaIU0pMy6P-9em', 'caifeng4kq')
-    # write_finish(my_pathname, 'DE4r0Fy0C9LuGN-oXKOcaIU0pMy6P-9em')
+    # get_doctor_gift(my_pathname, 'DE4r0eJWGqZNhRDzDj5Vh46ysPJqswJw', 'zhangrong2000')
+    # write_finish(my_pathname, 'DE4r0eJWGqZNhRDzDj5Vh46ysPJqswJw')
 
     # 将医生分成5等份
     my_doctor_href_list1 = my_doctor_href_list[int(len(my_doctor_href_list)/5)*0:int(len(my_doctor_href_list)/5)*1]

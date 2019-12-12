@@ -49,6 +49,7 @@ def get_doctor_article(pathname, doctor_href, doctor_home):
 
             # 获取页面内容
             html = requests.get(url, headers=Headers).text
+            html = html.replace('</html>', '')
             html = BeautifulSoup(html, 'lxml')
 
         try:

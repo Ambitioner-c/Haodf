@@ -1,6 +1,9 @@
+# _*_ coding : UTF-8 _*_
+# author : cfl
+# time   : 2019/12/12 下午13:51
 """
 author: cfl
-    获取医生的评论信息
+    获取医生的评论信息、投票信息
 """
 from bs4 import BeautifulSoup
 import re
@@ -19,15 +22,21 @@ Headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) '
 
 
 def get_doctor_comment_vote(pathname, doctor_href):
+    """
+    获取医生评论和投票信息
+    :param pathname:
+    :param doctor_href:
+    :return:
+    """
     url = 'https://www.haodf.com/doctor/%s/jingyan/%s.htm' % (doctor_href, '1')
 
     # 获取页面内容
     html = requests.get(url, headers=Headers).text
     html = BeautifulSoup(html, 'lxml')
 
-    # 检验页面是否正常加载
+    # 通过请求医生姓名，检验页面是否正常加载
     try:
-        div_doctor_header = html.findAll('div', attrs={'id': 'doctor_header'})[0]
+        h1 = html.findAll('h1', attrs={'class': re.compile('doctor-name')})[0]
     except:
         sleep(30)
 
@@ -41,7 +50,33 @@ def get_doctor_comment_vote(pathname, doctor_href):
 
     #
     # 投票情况
-    get_vote(pathname, doctor_href, html)
+
+    # 近两年
+    vote_now = get_vote(html)
+
+    # 两年前
+    url_past = 'https://www.haodf.com/jingyan/all-%s.htm?type-old&votecnt2YearTab=1' % experience_name
+    # 获取页面内容
+    html_past = requests.get(url_past, headers=Headers).text
+    html_past = BeautifulSoup(html_past, 'lxml')
+
+    # 通过请求医生姓名，检验页面是否正常加载
+    try:
+        h1_past = html_past.findAll('h1', attrs={'class': re.compile('doctor-name')})[0]
+    except:
+        sleep(30)
+
+        # 获取页面内容
+        html_past = requests.get(url_past, headers=Headers).text
+        html_past = BeautifulSoup(html_past, 'lxml')
+    vote_past = get_vote(html_past)
+
+    now = time.asctime(time.localtime(time.time()))
+    # 写入投票
+    write_vote_doc(pathname,
+                   doctor_href,
+                   vote_now, vote_past,
+                   now)
 
     #
     # 评价
@@ -62,9 +97,9 @@ def get_doctor_comment_vote(pathname, doctor_href):
             html = requests.get(url, headers=Headers).text
             html = BeautifulSoup(html, 'lxml')
 
-            # 检验页面是否正常加载
+            # 通过请求医生姓名，检验页面是否正常加载
             try:
-                div_doctor_header = html.findAll('div', attrs={'id': 'doctor_header'})[0]
+                h1 = html.findAll('h1', attrs={'class': re.compile('doctor-name')})[0]
             except:
                 sleep(30)
 
@@ -78,138 +113,145 @@ def get_doctor_comment_vote(pathname, doctor_href):
         return
 
 
-def get_vote(pathname, doctor_href, html):
-    #
+def get_vote(html):
+    """
+    获取投票信息
+    :param html:
+    :return: vote
+    """
     # 投票情况
-    # 无投票
     try:
-        div_disease_group = html.findAll('div', attrs={'class': 'disease_group'})[0]
+        # 无投票
+        div_vote = html.findAll('div', attrs={'class': 'vote-type-con'})[0]
     except:
         return
 
+    #
     # 最近两年
-    div_tabbox_now = div_disease_group.findAll('div', attrs={'class': re.compile(r'kbjy_tabbox')})[0]
     try:
-        div_tabmianin_now = div_tabbox_now.findAll('div', attrs={'id': 'tabmainin'})[0]
-        a_now_list = re.findall(r'>(.+?)</a>', str(div_tabmianin_now))
-        vote_now = ''
+        a_now_list = re.findall(r'>(.+?)</a>', str(div_vote))
+        vote = ''
         for j in a_now_list:
-            vote_now = vote_now + str(j).replace(' ', '') + '|'
-        vote_now = vote_now.strip('|').replace(',', '，')
+            vote = vote + str(j).replace(' ', '') + '|'
+        vote = vote.strip('|')
     except:
-        vote_now = '无'
+        vote = '无'
 
-    # 两年前
-    div_tabbox_past = div_disease_group.findAll('div', attrs={'class': re.compile(r'kbjy_tabbox')})[1]
-    try:
-        div_tabmianin_past = div_tabbox_past.findAll('div', attrs={'id': 'tabmainin_gray'})[0]
-        a_past_list = re.findall(r'>(.+?)</a>', str(div_tabmianin_past))
-        vote_past = ''
-        for j in a_past_list:
-            vote_past = vote_past + str(j).replace(' ', '') + '|'
-        vote_past = vote_past.strip('|').replace(',', '，')
-    except:
-        vote_past = '无'
-
-    now = time.asctime(time.localtime(time.time()))
-    write_vote_doc(pathname,
-                   doctor_href,
-                   vote_now, vote_past,
-                   now)
+    return vote
 
 
 def get_comment(pathname, doctor_href, html):
-    # 评价
-    div_comment_content = html.findAll('div', attrs={'class': 'doctorjyjy'})[0]
-
-    # 如果无评论
+    """
+    获取评论信息，并写入文件
+    :param pathname:
+    :param doctor_href:
+    :param html:
+    :return:
+    """
+    # 患者评价
     try:
-        table_comment_list = div_comment_content.findAll('table', attrs={'class': 'doctorjy'})
+        div_comment_list = html.findAll('div', attrs={'class': 'patient-eva'})
     except:
         return
 
-    for j in table_comment_list:
+    for j in div_comment_list:
         #
         # 患者信息
-        table_patient = j.findAll('table')[0]
+        div_patient = j.findAll('div', attrs={'class': 'patient-eva-header'})[0]
+
         # 评价时间
         try:
-            _time = re.findall(r'>时间：(.+?)</td>', str(table_patient))[0].replace(',', '，')
+            span_time_ = str(div_patient.findAll('span')[-1]).replace('\n', '').replace(' ', '')
+            time_ = re.findall(r'>(.+?)</span>', str(span_time_))[0]
         except:
-            _time = '两年前'
+            time_ = '未填'
+
         # 所患疾病
         try:
-            a_illness = table_patient.findAll('a', attrs={'href': re.compile(r'jibing')})[0]
-            illness = re.findall(r'>(.+?)</a>', str(a_illness))[0].replace(',', '，')
+            span_illness = div_patient.findAll('span', attrs={'class': 'disease-tag'})[0]
+            illness = re.findall(r'>(.+?)<', str(span_illness))[0].replace(',', '，')
         except:
             illness = '未填'
+
+        #
+        # 细节信息
+        div_info = j.findAll('div', attrs={'class': 'clearfix'})[0]
+
         # 看病目的
         try:
-            purpose = re.findall(r'>看病目的：(.+?)</span>', str(table_patient))[0].replace(',', '，')
+            purpose = re.findall(r'>看病目的：(.+?)</span>', str(div_info))[0].replace(',', '，')
         except:
             purpose = '未填'
+
         # 治疗方式
         try:
-            way = re.findall(r'>治疗方式：(.+?)</span>', str(table_patient))[0].replace(',', '，')
+            way = re.findall(r'>治疗方式：(.+?)</span>', str(div_info))[0].replace(',', '，')
         except:
             way = '未填'
-        # 患者主观疗效、态度
-        tr_subjective_attitude = table_patient.findAll('tr')[-1]
+
+        # 患者主观疗效、态度满意度
         try:
-            span_subjective = tr_subjective_attitude.findAll('span')[0]
-            subjective = re.findall(r'>(.+?)</span>', str(span_subjective))[0].replace(',', '，')
+            subjective = re.findall(r'>疗效满意度：(.+?)</span>', str(div_info))[0].replace(',', '，')
         except:
             subjective = '未填'
         try:
-            pan_subjective = tr_subjective_attitude.findAll('span')[1]
-            attitude = re.findall(r'>(.+?)</span>', str(pan_subjective))[0].replace(',', '，')
+            attitude = re.findall(r'>态度满意度：(.+?)</span>', str(div_info))[0].replace(',', '，')
         except:
             attitude = '未填'
 
-        #
-        # 评价信息
-        table_comment = j.findAll('table')[1]
-        # 评价id
-        label_comment_id = table_comment.findAll('label', attrs={'class': re.compile(r'J_ding')})[0]
-        comment_id = str(re.findall(r'value="(\d+)"', str(label_comment_id))[0])
-        # 类型、评价
+        # 选择该医生的理由
         try:
-            td_type_experience = table_comment.findAll('td', attrs={'class': 'spacejy'})[0]
-            _type = re.findall(r'>(.+?)：</span', str(td_type_experience))[0].replace(',', '，')
-            experience = re.findall(r'</span>(.+?)</td>', str(td_type_experience))[0].strip('	').strip(' ').replace(',', '，')
-        except:
-            _type = '未填'
-            experience = '未填'
-        # 选择该医生就诊的理由
-        try:
-            reason = re.findall(r'选择该医生就诊的理由：</span>(.+?)</div>', str(table_comment))[0].replace(',', '，')
+            reason = re.findall(r'>选择该医生的理由：(.+?)</span>', str(div_info))[0].replace(',', '，')
         except:
             reason = '未填'
+
         # 本次挂号途径
         try:
-            approach = re.findall(r'本次挂号途径：</span>(.+?)</div>', str(table_comment))[0].replace(',', '，')
+            approach = re.findall(r'>本次挂号途径：(.+?)</span>', str(div_info))[0].replace(',', '，')
         except:
             approach = '未填'
+
         # 目前病情状态
         try:
-            state = re.findall(r'目前病情状态：</span>(.+?)</div>', str(table_comment))[0].replace(',', '，')
+            state = re.findall(r'>目前病情状态：(.+?)</span>', str(div_info))[0].replace(',', '，')
         except:
             state = '未填'
+
         # 住院花费或者本次看病费用总计或者门诊花费
         try:
-            cost = re.findall(r'(\d+)元', str(table_comment))[0].strip('	').strip(' ').replace(',', '，')
+            cost = re.findall(r'(\d+)元', str(div_info))[0].replace(',', '，')
         except:
             cost = '未填'
+
+        #
+        # 评价信息
+        div_comment = str(j.findAll('div')[-1]).replace('\n', '').replace(' ', '')
+
+        # 评价id
+        comment_id = '无'
+
+        # 类型、评价
+        try:
+            type_ = re.findall(r'">(.+?)：', str(div_comment))[0]
+            experience = re.findall(r'：(.+?)<', str(div_comment))[0].strip('	').strip(' ').replace(',', '，')
+        except:
+            type_ = '未填'
+            experience = '未填'
 
         now = time.asctime(time.localtime(time.time()))
         write_comment_doc(pathname,
                           doctor_href, comment_id,
                           illness, purpose, way, subjective, attitude,
-                          _type, experience, reason, approach, state, cost, _time,
+                          type_, experience, reason, approach, state, cost, time_,
                           now)
 
 
 def read_doc(pathname):
+    """
+    读取带爬列表
+    :param pathname:
+    :return: doctor_href_list
+    """
     # 全列表
     doctor_href_all_list = []
     doctor_href_all_reader_list = csv.reader(open(pathname + 'doctor.csv', 'r'))
@@ -241,6 +283,11 @@ def read_doc(pathname):
 
 
 def write_vote_table(pathname):
+    """
+    写入投票表头
+    :param pathname:
+    :return:
+    """
     # 判断是否已经写入表头
     try:
         with open(pathname + 'doctor_vote_detail.csv', 'r') as doctor_vote_detail_reader:
@@ -269,6 +316,11 @@ def write_vote_table(pathname):
 
 
 def write_comment_table(pathname):
+    """
+    写入评论表头
+    :param pathname:
+    :return:
+    """
     # 判断是否已经写入表头
     try:
         with open(pathname + 'doctor_comment_detail.csv', 'r') as doctor_comment_detail_reader:
@@ -305,6 +357,15 @@ def write_vote_doc(pathname,
                    doctor_href,
                    vote_now, vote_past,
                    now):
+    """
+    写入投票信息
+    :param pathname:
+    :param doctor_href:
+    :param vote_now:
+    :param vote_past:
+    :param now:
+    :return:
+    """
     # 医生主页
     with open(pathname + 'doctor_vote_detail.csv', 'a') as doctor_vote_detail:
         doctor_vote_detail_writer = csv.writer(doctor_vote_detail)
@@ -322,8 +383,28 @@ def write_vote_doc(pathname,
 def write_comment_doc(pathname,
                       doctor_href, comment_id,
                       illness, purpose, way, subjective, attitude,
-                      _type, experience, reason, approach, state, cost, _time,
+                      type_, experience, reason, approach, state, cost, time_,
                       now):
+    """
+    写入评论信息
+    :param pathname:
+    :param doctor_href:
+    :param comment_id:
+    :param illness:
+    :param purpose:
+    :param way:
+    :param subjective:
+    :param attitude:
+    :param type_:
+    :param experience:
+    :param reason:
+    :param approach:
+    :param state:
+    :param cost:
+    :param time_:
+    :param now:
+    :return:
+    """
     # 医生主页
     with open(pathname + 'doctor_comment_detail.csv', 'a') as doctor_comment_detail:
         doctor_comment_detail_writer = csv.writer(doctor_comment_detail)
@@ -331,11 +412,17 @@ def write_comment_doc(pathname,
         # 写入行数据
         doctor_comment_detail_writer.writerow([doctor_href, comment_id,
                                                illness, purpose, way, subjective, attitude,
-                                               _type, experience, reason, approach, state, cost, _time,
+                                               type_, experience, reason, approach, state, cost, time_,
                                                now])
 
 
 def write_finish(pathname, doctor_href):
+    """
+    写入成功
+    :param pathname:
+    :param doctor_href:
+    :return:
+    """
     with open(pathname + 'doctor_comment_detail_finish.csv', 'a') as doctor_home_detail_finish:
         doctor_home_detail_finish_writer = csv.writer(doctor_home_detail_finish)
 
@@ -344,6 +431,12 @@ def write_finish(pathname, doctor_href):
 
 
 def write_error(pathname, doctor_href):
+    """
+    写入失败
+    :param pathname:
+    :param doctor_href:
+    :return:
+    """
     with open(pathname + 'doctor_comment_detail_error.csv', 'a') as doctor_home_detail_error:
         doctor_home_detail_error_writer = csv.writer(doctor_home_detail_error)
 
@@ -404,8 +497,8 @@ if __name__ == '__main__':
     my_doctor_href_list = read_doc(my_pathname)
 
     # get_doctor_comment_vote(my_pathname, my_doctor_href_list[1])
-    # get_doctor_comment_vote(my_pathname, 'DE4r0BCkuHzdeKnRD-DWKEMSMwtPM')
-    # write_finish(my_pathname, 'DE4r0BCkuHzdeKnRD-DWKEMSMwtPM')
+    # get_doctor_comment_vote(my_pathname, 'DE4r0eJWGqZNwMGX-qrdcxIqpOOMCeP0')
+    # write_finish(my_pathname, 'DE4r0eJWGqZNwMGX-qrdcxIqpOOMCeP0')
 
     # 将医生分成5等份
     my_doctor_href_list1 = my_doctor_href_list[int(len(my_doctor_href_list)/5)*0:int(len(my_doctor_href_list)/5)*1]

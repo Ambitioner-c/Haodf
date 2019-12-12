@@ -1,6 +1,6 @@
 # _*_ coding : UTF-8 _*_
 # author : cfl
-# time   : 2019/12/11 下午3:14
+# time   : 2019/12/12 下午12:32
 """
 author: cfl
     获取医生的文章信息
@@ -22,18 +22,28 @@ Headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) '
 
 
 def get_doctor_article(pathname, doctor_href, doctor_home):
+    """
+    获取医生文章信息，并写入文件
+    :param pathname:
+    :param doctor_href:
+    :param doctor_home:
+    :return:
+    """
     page = 0
     while True:
+        # 一直循环遍历，直到无内容
         page = page + 1
         url = 'https://%s.haodf.com/lanmu_%s' % (doctor_home, str(page))
 
         # 获取页面内容
         html = requests.get(url, headers=Headers).text
+        # 这里去掉</html>，是因为返回结果中只有一个<html>，却有两个</html>，导致BeautifulSoup无法解析
+        html = html.replace('</html>', '')
         html = BeautifulSoup(html, 'lxml')
 
-        # 检验页面是否正常加载
+        # 通过请求医生姓名，检验页面是否正常加载
         try:
-            div = html.findAll('div', attrs={'class': re.compile('doc_title')})[0]
+            h1 = html.findAll('h1', attrs={'class': re.compile('doctor-name')})[0]
         except:
             sleep(30)
 
@@ -41,9 +51,9 @@ def get_doctor_article(pathname, doctor_href, doctor_home):
             html = requests.get(url, headers=Headers).text
             html = BeautifulSoup(html, 'lxml')
 
-        # 页面无内容，则跳出循环
         try:
-            span_hint = html.findAll('span', attrs={'class': 's_hint'})[0]
+            # 无文章，则跳出循环
+            span_hint = html.findAll('span', attrs={'class': re.compile(r's_hint')})[0]
             return
         except:
             # 文章列表
@@ -80,10 +90,7 @@ def get_doctor_article(pathname, doctor_href, doctor_home):
 
                 #
                 # 阅读部分
-                try:
-                    p_read = j.findAll('p', attrs={'class': 'read_article'})[0]
-                except:
-                    p_read = '0'
+                p_read = j.findAll('p', attrs={'class': 'read_article'})[0]
 
                 # 已读人数
                 try:
@@ -122,6 +129,11 @@ def get_doctor_article(pathname, doctor_href, doctor_home):
 
 
 def read_doc(pathname):
+    """
+    读取带爬列表
+    :param pathname:
+    :return: doctor_href_list, doctor_home_list
+    """
     # 全列表
     doctor_href_all_list = []
     doctor_home_all_list = []
@@ -157,6 +169,11 @@ def read_doc(pathname):
 
 
 def write_article_table(pathname):
+    """
+    写入文章表头
+    :param pathname:
+    :return:
+    """
     # 判断是否已经写入表头
     try:
         with open(pathname + 'doctor_article_detail.csv', 'r') as doctor_article_detail_reader:
@@ -195,6 +212,23 @@ def write_article_doc(pathname,
                       type_, reprint, stick, title,
                       read, evaluate, good, buy, time_,
                       now):
+    """
+    写入文章文件
+    :param pathname:
+    :param doctor_href:
+    :param article_id:
+    :param type_:
+    :param reprint:
+    :param stick:
+    :param title:
+    :param read:
+    :param evaluate:
+    :param good:
+    :param buy:
+    :param time_:
+    :param now:
+    :return:
+    """
     # 文章页
     with open(pathname + 'doctor_article_detail.csv', 'a') as doctor_article_detail:
         doctor_article_detail_writer = csv.writer(doctor_article_detail)
@@ -207,6 +241,12 @@ def write_article_doc(pathname,
 
 
 def write_finish(pathname, doctor_href):
+    """
+    写入成功
+    :param pathname:
+    :param doctor_href:
+    :return:
+    """
     with open(pathname + 'doctor_article_detail_finish.csv', 'a') as doctor_article_detail_finish:
         doctor_article_detail_finish_writer = csv.writer(doctor_article_detail_finish)
 
@@ -215,6 +255,12 @@ def write_finish(pathname, doctor_href):
 
 
 def write_error(pathname, doctor_href):
+    """
+    写入失败
+    :param pathname:
+    :param doctor_href:
+    :return:
+    """
     with open(pathname + 'doctor_article_detail_error.csv', 'a') as doctor_article_detail_error:
         doctor_article_detail_error_writer = csv.writer(doctor_article_detail_error)
 
@@ -275,8 +321,8 @@ if __name__ == '__main__':
     my_doctor_href_list, my_doctor_home_list = read_doc(my_pathname)
 
     # get_doctor_article(my_pathname, my_doctor_href_list[0], my_doctor_home_list[0])
-    # get_doctor_article(my_pathname, 'DE4r0Fy0C9LuSQeC12Enhb68YSpIkSXQi', 'sw8011')
-    # write_finish(my_pathname, 'DE4r0Fy0C9LuSQeC12Enhb68YSpIkSXQi')
+    # get_doctor_article(my_pathname, 'DE4r0BCkuHzduKp0KEpOXKq2IWmiF', 'drdaibixia')
+    # write_finish(my_pathname, 'DE4r0BCkuHzduKp0KEpOXKq2IWmiF')
 
     # 将医生分成5等份
     my_doctor_href_list1 = my_doctor_href_list[int(len(my_doctor_href_list)/5)*0:int(len(my_doctor_href_list)/5)*1]

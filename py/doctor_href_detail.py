@@ -1,6 +1,6 @@
 # _*_ coding : UTF-8 _*_
 # author : cfl
-# time   : 2019/12/10 下午8:58
+# time   : 2019/12/14 下午8:58
 """
     获取医生信息中心页、临床经验
 """
@@ -20,16 +20,16 @@ Headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64)'
                          ' Chrome/78.0.3904.108 Safari/537.36'}
 
 
-def get_doctor_href(pathname, doctor_href):
-    url = 'https://www.haodf.com/doctor/%s.htm' % doctor_href
+def get_doctor_href(pathname, doctor_href, doctor_id):
+    url = 'https://www.haodf.com/doctor/%s-all-servicestar.htm' % doctor_id
 
     # 获取页面内容
     html = requests.get(url, headers=Headers).text
     html = BeautifulSoup(html, 'lxml')
 
-    # 检验页面是否正常加载
+    # 通过请求医生姓名，检验页面是否正常加载
     try:
-        div_doctor_header = html.findAll('div', attrs={'id': 'bp_doctor_about'})[0]
+        h1 = html.findAll('h1', attrs={'class': re.compile('doctor-name')})[0]
     except:
         sleep(30)
 
@@ -37,66 +37,30 @@ def get_doctor_href(pathname, doctor_href):
         html = requests.get(url, headers=Headers).text
         html = BeautifulSoup(html, 'lxml')
 
-    # 获取script代码
-    scripts = html.findAll('script')
-
-    bp_doctor_about = ''
-    for i in scripts:
-        if 'bp_doctor_about' in str(i):
-            on_pagelet_arrive = re.findall(r'onPageletArrive\((.+?)\);</script>', str(i))[0].strip('{').strip('}')
-            id_ = re.findall(r'"id":"(.+?)"', str(on_pagelet_arrive))[0]
-            content = re.findall(r'"content":(.+?),"cssList"', str(on_pagelet_arrive))[0].strip('"').strip('\\n')
-            bp_doctor_about = content
-
-    bp_doctor_servicestar = ''
-    for i in scripts:
-        if 'bp_doctor_servicestar' in str(i):
-            on_pagelet_arrive = re.findall(r'onPageletArrive\((.+?)\);</script>', str(i))[0].strip('{').strip('}')
-            id_ = re.findall(r'"id":"(.+?)"', str(on_pagelet_arrive))[0]
-            content = re.findall(r'"content":(.+?),"cssList"', str(on_pagelet_arrive))[0].strip('"').strip('\\n')
-            bp_doctor_servicestar = content
-
     #
     # 信息
-    get_info(pathname, doctor_href, bp_doctor_about, bp_doctor_servicestar)
+    get_info(pathname, doctor_href, html)
 
     #
     # 临床
-    get_clinic(pathname, doctor_href, bp_doctor_servicestar)
+    get_clinic(pathname, doctor_href, html)
 
 
-def get_info(pathname, doctor_href, bp_doctor_about, bp_doctor_servicestar):
-    #
-    # 推荐热度部分
+def get_info(pathname, doctor_href, html):
+    # 右边模块
+    div_right = html.findAll('div', attrs={'class': re.compile('container-r')})[0]
+    # 诊治后的患者数
+    span_diagnosis = div_right.findAll('span', attrs={'class': re.compile('experience-data')})[1]
+    diagnosis = re.findall(r'>(\d+)例<', str(span_diagnosis))[0]
 
-    # 疗效满意度
-    treatment = re.findall(r'\\u7597\\u6548\\u6ee1\\u610f\\u5ea6\\uff1a(.+?)<', str(bp_doctor_about))[0]
-    if '暂无' == treatment.encode('utf-8').decode('unicode_escape'):
-        treatment = ''
-    # 态度满意度
-    attitude = re.findall(r'\\u6001\\u5ea6\\u6ee1\\u610f\\u5ea6\\uff1a(.+?)<', str(bp_doctor_about))[0]
-    if '暂无' == attitude.encode('utf-8').decode('unicode_escape'):
-        attitude = ''
-    # 累计帮助患者数
-    helps = re.findall(r'\\u7d2f\\u8ba1\\u5e2e\\u52a9\\u60a3\\u8005\\u6570\\uff1a(.+?)<', str(bp_doctor_about))[0]
-    if '暂无' == helps.encode('utf-8').decode('unicode_escape'):
-        helps = ''
-    # 近两周帮助患者数
-    help_ = re.findall(r'\\u8fd1\\u4e24\\u5468\\u5e2e\\u52a9\\u60a3\\u8005\\u6570\\uff1a(.+?)<', str(bp_doctor_about))[0]
-    if '暂无' == help_.encode('utf-8').decode('unicode_escape'):
-        help_ = ''
+    # 随访中的患者数
+    span_follow = div_right.findAll('span', attrs={'class': re.compile('experience-data')})[2]
+    follow = re.findall(r'>(\d+)例<', str(span_follow))[0]
 
-    #
-    # 临床经验部分
-    try:
-        # 诊治过的患者数
-        diagnosis = re.findall(r'\\u8bca\\u6cbb\\u8fc7\\u7684\\u60a3\\u8005\\u6570\\uff1a(.+?)\\u4f8b<', str(bp_doctor_servicestar))[0]
-        # 随访中的患者数
-        follow = re.findall(r'\\u968f\\u8bbf\\u4e2d\\u7684\\u60a3\\u8005\\u6570\\uff1a(.+?)\\u4f8b<', str(bp_doctor_servicestar))[0]
-    except:
-        diagnosis = ''
-        follow = ''
-
+    treatment = ''
+    attitude = ''
+    helps = ''
+    help_ = ''
     now = time.asctime(time.localtime(time.time()))
     write_href_doc(pathname,
                    doctor_href,
@@ -105,18 +69,17 @@ def get_info(pathname, doctor_href, bp_doctor_about, bp_doctor_servicestar):
                    now)
 
 
-def get_clinic(pathname, doctor_href, bp_doctor_servicestar):
-    # 临床经验部分
+def get_clinic(pathname, doctor_href, html):
+    # 左边模块
     try:
+        div_left = html.findAll('div', attrs={'class': re.compile('vote-type-con')})[0]
         # 临床经验
-        name_list = re.findall(r']\);\\">(.+?)<\\/a>', str(bp_doctor_servicestar))
-        num_list = re.findall(r'\((\d+)\\u4f8b', str(bp_doctor_servicestar))
+        clinic_list = re.findall(r'>(.+?)</a>', str(div_left))
 
         clinic = ''
-        for j in range(len(num_list)):
-            clinic = clinic + name_list[j].encode('utf-8').decode('unicode_escape') \
-                     + '(' + str(num_list[j]).replace('例', '') + ')' + '|'
-        clinic = clinic.strip(")").strip("|")
+        for j in range(1, len(clinic_list)):
+            clinic = clinic + clinic_list[j] + '|'
+        clinic = clinic.strip("|")
     except:
         clinic = ''
 
@@ -130,12 +93,14 @@ def get_clinic(pathname, doctor_href, bp_doctor_servicestar):
 def read_doc(pathname):
     # 全列表
     doctor_href_all_list = []
-    doctor_href_all_reader_list = csv.reader(open(pathname + 'doctor.csv', 'r'))
+    doctor_id_all_list = []
+    doctor_href_id_all_reader_list = csv.reader(open(pathname + 'doctor_home_detail.csv', 'r'))
     # 删掉第一行
     n = 0
-    for j in doctor_href_all_reader_list:
+    for j in doctor_href_id_all_reader_list:
         if n != 0:
-            doctor_href_all_list.append(j[1])
+            doctor_href_all_list.append(j[0])
+            doctor_id_all_list.append(j[1])
         n += 1
 
     # 已完成列表
@@ -150,12 +115,14 @@ def read_doc(pathname):
         doctor_href_finish_set = set(doctor_href_finish_list)
 
     # 待爬取列表
+    doctor_id_list = []
     doctor_href_list = []
     for j in range(len(doctor_href_all_list)):
         if doctor_href_all_list[j] not in doctor_href_finish_set:
             doctor_href_list.append(doctor_href_all_list[j])
+            doctor_id_list.append(doctor_id_all_list[j])
 
-    return doctor_href_list
+    return doctor_href_list, doctor_id_list
 
 
 def write_href_table(pathname):
@@ -270,10 +237,11 @@ def write_error(pathname, doctor_href):
 
 
 class MyThread(threading.Thread):
-    def __init__(self, pathname, doctor_href_list):
+    def __init__(self, pathname, doctor_href_list, doctor_id_list):
         threading.Thread.__init__(self)
         self.pathname = pathname
         self.doctor_href_list = doctor_href_list
+        self.doctor_id_list = doctor_id_list
 
     def run(self):
         # 线程名
@@ -289,7 +257,7 @@ class MyThread(threading.Thread):
             sleep(randint(2, 5))
             try:
                 # 获取医院细节信息
-                get_doctor_href(self.pathname, self.doctor_href_list[j])
+                get_doctor_href(self.pathname, self.doctor_href_list[j], self.doctor_id_list[j])
 
                 # 写入成功
                 write_finish(self.pathname, self.doctor_href_list[j])
@@ -319,10 +287,10 @@ if __name__ == '__main__':
     write_clinic_table(my_pathname)
 
     # 获取待爬取列表
-    my_doctor_href_list = read_doc(my_pathname)
+    my_doctor_href_list, my_doctor_id_list = read_doc(my_pathname)
 
     # get_doctor_comment_vote(my_pathname, my_doctor_href_list[1])
-    # get_doctor_href(my_pathname, 'DE4r0Fy0C9Luhnz9uxO5EkJ1SHSYhq37w')
+    # get_doctor_href(my_pathname, 'DE4r0BCkuHzdei2EkeRwE-9BS0ak-', '294647')
     # write_finish(my_pathname, 'DE4r0Fy0C9Luhnz9uxO5EkJ1SHSYhq37w')
 
     # 将医生分成5等份
@@ -332,12 +300,18 @@ if __name__ == '__main__':
     my_doctor_href_list4 = my_doctor_href_list[int(len(my_doctor_href_list)/5)*3:int(len(my_doctor_href_list)/5)*4]
     my_doctor_href_list5 = my_doctor_href_list[int(len(my_doctor_href_list)/5)*4:len(my_doctor_href_list)]
 
+    my_doctor_id_list1 = my_doctor_id_list[int(len(my_doctor_id_list)/5)*0:int(len(my_doctor_id_list)/5)*1]
+    my_doctor_id_list2 = my_doctor_id_list[int(len(my_doctor_id_list)/5)*1:int(len(my_doctor_id_list)/5)*2]
+    my_doctor_id_list3 = my_doctor_id_list[int(len(my_doctor_id_list)/5)*2:int(len(my_doctor_id_list)/5)*3]
+    my_doctor_id_list4 = my_doctor_id_list[int(len(my_doctor_id_list)/5)*3:int(len(my_doctor_id_list)/5)*4]
+    my_doctor_id_list5 = my_doctor_id_list[int(len(my_doctor_id_list)/5)*4:len(my_doctor_id_list)]
+
     # 执行多线程
-    t1 = MyThread(pathname=my_pathname, doctor_href_list=my_doctor_href_list1)
-    t2 = MyThread(pathname=my_pathname, doctor_href_list=my_doctor_href_list2)
-    t3 = MyThread(pathname=my_pathname, doctor_href_list=my_doctor_href_list3)
-    t4 = MyThread(pathname=my_pathname, doctor_href_list=my_doctor_href_list4)
-    t5 = MyThread(pathname=my_pathname, doctor_href_list=my_doctor_href_list5)
+    t1 = MyThread(pathname=my_pathname, doctor_href_list=my_doctor_href_list1, doctor_id_list=my_doctor_id_list1)
+    t2 = MyThread(pathname=my_pathname, doctor_href_list=my_doctor_href_list2, doctor_id_list=my_doctor_id_list2)
+    t3 = MyThread(pathname=my_pathname, doctor_href_list=my_doctor_href_list3, doctor_id_list=my_doctor_id_list3)
+    t4 = MyThread(pathname=my_pathname, doctor_href_list=my_doctor_href_list4, doctor_id_list=my_doctor_id_list4)
+    t5 = MyThread(pathname=my_pathname, doctor_href_list=my_doctor_href_list5, doctor_id_list=my_doctor_id_list5)
 
     t1.start()
     t2.start()

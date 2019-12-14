@@ -104,7 +104,10 @@ def get_doctor_home(driver, pathname, doctor_href, doctor_home):
     try:
         title = name + '||' + title_list[0] + '|' + title_list[1]
     except:
-        title = name + '||' + title_list[0]
+        try:
+            title = name + '||' + title_list[0]
+        except:
+            title = name
 
     # 科室
     p_office_list = div_up.findAll('p', attrs={'class': re.compile(r'doctor-faculty')})
@@ -469,8 +472,8 @@ if __name__ == '__main__':
     # my_doctor_home_list = my_doctor_home_list[2500:]
 
     # get_doctor_home(my_driver, my_pathname, my_doctor_href_list[0], my_doctor_home_list[0])
-    # get_doctor_home(my_driver, my_pathname, 'DE4r0BCkuHzdeZOlwlzfz6DLFjxaq', 'drzjxcn')
-    # write_finish(my_pathname, 'DE4r08xQdKSLf-2EkxEsNJ7qcZX0')
+    # get_doctor_home(my_driver, my_pathname, 'DE4r0Fy0C9Luhnz9uCIozuYwBFNKaEMw4', 'drcdf')
+    # write_finish(my_pathname, 'DE4r0Fy0C9Luhnz9uCIozuYwBFNKaEMw4')
 
     # 将医生分成3等份
     my_doctor_href_list1 = my_doctor_href_list[int(len(my_doctor_href_list)/3)*0:int(len(my_doctor_href_list)/3)*1]

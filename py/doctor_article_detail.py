@@ -66,7 +66,8 @@ def get_doctor_article(pathname, doctor_href, doctor_home):
                 p_title = j.findAll('p', attrs={'class': 'art_title'})[0]
 
                 # 文章类型
-                type_ = re.findall(r'\[(....)', str(p_title))[0]
+                type_ = re.findall(r'\[(.+?)]</', str(p_title))[0]
+                type_ = type_.replace(' ', '')
 
                 # 文章id、标题
                 a_article_id_title = p_title.findAll('a', attrs={'class': 'art_t'})[0]
@@ -325,8 +326,8 @@ if __name__ == '__main__':
     my_doctor_href_list, my_doctor_home_list = read_doc(my_pathname)
 
     # get_doctor_article(my_pathname, my_doctor_href_list[0], my_doctor_home_list[0])
-    # get_doctor_article(my_pathname, 'DE4r0BCkuHzduSnHPPNi3poYKbews', 'huangheloushang')
-    # write_finish(my_pathname, 'DE4r0BCkuHzduSnHPPNi3poYKbews')
+    # get_doctor_article(my_pathname, 'DE4r0BCkuHzdeSYibUr4uSXys8lfo', 'zhaodongqi')
+    # write_finish(my_pathname, 'DE4r0BCkuHzdeSYibUr4uSXys8lfo')
 
     # 将医生分成5等份
     my_doctor_href_list1 = my_doctor_href_list[int(len(my_doctor_href_list)/5)*0:int(len(my_doctor_href_list)/5)*1]
